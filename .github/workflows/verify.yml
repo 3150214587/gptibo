@@ -50,6 +50,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - run: npm ci
       - uses: actions/setup-go@v5
         with:
           go-version-file: services/storefront/go.mod

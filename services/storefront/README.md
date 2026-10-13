@@ -39,6 +39,8 @@ go run ./cmd/storefront worker
 
 ## 测试
 
+先在仓库根目录执行 `npm ci`；前后端路由契约测试需要 TypeScript 解析器。
+
 ```sh
 go test ./...
 go vet ./...
