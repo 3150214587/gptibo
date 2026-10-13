@@ -1,0 +1,441 @@
+/* A white support button with a soft, stationary blue halo. */
+.order-support-anchor { --support-blue: #0071e3; position: relative; flex-shrink: 0; }
+.order-support-trigger {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  isolation: isolate;
+  min-height: 44px;
+  scroll-margin-block: 16px;
+  padding-inline: 14px;
+  gap: 7px;
+  border-radius: 11px;
+  border: 1px solid #d7e5f5;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #1d1d1f;
+  box-shadow: 0 2px 5px #00000006;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.order-support-trigger::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 16px 3px #0071e33d;
+  pointer-events: none;
+  animation: order-support-breathe 3s ease-in-out infinite;
+}
+.order-support-trigger:is(:hover, :focus-visible, [data-popup-open], [data-state=open], [aria-expanded=true]) {
+  color: #1d1d1f;
+  background: #fff;
+  border-color: #7caee3;
+  box-shadow: 0 2px 8px #0071e314;
+}
+.order-support-trigger:is(:disabled, [data-disabled])::after { animation: none; opacity: 0; }
+@keyframes order-support-breathe {
+  0%, 100% { opacity: .18; }
+  50% { opacity: .9; }
+}
+.order-support-trigger > svg { display: block; width: 15px; height: 15px; flex-shrink: 0; }
+.order-support-trigger > span { display: block; line-height: 16px; }
+.order-support-anchor[data-guided] .order-support-trigger::after { animation-duration: 2.6s; }
+
+/* Quiet guidance beside the order on desktop; a bottom prompt on small screens. */
+.order-support-guide-positioner { z-index: 65; }
+.order-support-guide {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  width: 242px;
+  padding: 20px 26px 20px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 17px;
+  background: #fff;
+  color: #1d1d1f;
+  box-shadow: 0 12px 40px #0000001f, 0 2px 8px #00000008;
+  outline: none;
+}
+.order-support-guide::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  bottom: 22px;
+  width: 11px;
+  height: 11px;
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+  transform: rotate(45deg);
+}
+.order-support-guide-icon { display: grid; place-items: center; flex-shrink: 0; width: 34px; height: 34px; border-radius: 11px; background: #eef5fc; color: #3778b8; }
+.order-support-guide-copy { flex: 1; min-width: 0; }
+.order-support-guide-copy > h2 { margin: 2px 0 0; font-size: 14px; line-height: 1.5; font-weight: 600; letter-spacing: -.2px; }
+.order-support-guide-copy > p { margin: 8px 0 0; font-size: 12px; line-height: 1.75; color: #6e6e73; }
+.order-support-guide-close { position: absolute; right: 5px; top: 5px; display: grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: 8px; background: transparent; color: #8b8b90; cursor: pointer; }
+.order-support-guide-close:is(:hover, :focus-visible) { background: #f3f3f5; color: #1d1d1f; }
+.order-support-guide-action { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; margin: 10px 0 0; padding: 0 14px; border: 1px solid #d7e5f5; border-radius: 9px; background: #f5f9fe; color: #28669f; font-size: 12px; font-weight: 600; cursor: pointer; }
+.order-support-guide-action:is(:hover, :focus-visible) { background: #eaf3fe; border-color: #7caee3; }
+.order-support-guide-positioner[data-compact=true] { position: fixed !important; inset: auto 16px max(16px, env(safe-area-inset-bottom)) !important; transform: none !important; width: min(400px, calc(100vw - 32px)); margin-inline: auto; }
+.order-support-guide-positioner[data-compact=true] .order-support-guide { width: 100%; padding: 20px 28px 18px 20px; }
+.order-support-guide-positioner[data-compact=true] .order-support-guide::after { display: none; }
+
+/* Base UI Popover Positioner & Popup */
+.order-support-positioner {
+  z-index: 70;
+  isolation: isolate;
+}
+
+.order-support-popup {
+  width: 316px;
+  max-width: min(calc(100vw - 32px), var(--available-width, 316px));
+  max-height: min(calc(100dvh - 32px), var(--available-height, 100dvh));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow:
+    0 4px 6px -1px #0000000a,
+    0 16px 40px -4px #0000001a,
+    0 0 0 1px #00000006;
+  outline: none;
+  transform-origin: var(--transform-origin);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition:
+    opacity var(--modal-open-dur) var(--modal-ease),
+    transform var(--modal-open-dur) var(--modal-ease),
+    filter var(--modal-open-dur) var(--modal-ease);
+  will-change: transform, opacity, filter;
+}
+
+/* Transitions.dev Opening & Closing States */
+.order-support-popup[data-starting-style],
+.order-support-popup[data-ending-style] {
+  opacity: 0;
+  filter: blur(var(--text-swap-blur));
+  transform: translateY(8px) scale(var(--modal-scale));
+}
+
+.order-support-popup[data-side=bottom][data-starting-style],
+.order-support-popup[data-side=bottom][data-ending-style] {
+  transform: translateY(-8px) scale(var(--modal-scale));
+}
+
+.order-support-popup[data-ending-style] {
+  transition-duration: var(--modal-close-dur);
+}
+
+/* Header Section */
+.order-support-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+}
+
+.order-support-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--primary) 10%, var(--secondary));
+  color: var(--primary);
+}
+
+.order-support-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-support-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.order-support-title {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.25px;
+  color: var(--foreground);
+}
+
+.order-support-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  background: color-mix(in srgb, #10b981 12%, var(--secondary));
+  color: #059669;
+}
+
+.dark .order-support-badge {
+  background: color-mix(in srgb, #10b981 18%, #1a1a1a);
+  color: #34d399;
+}
+
+.order-support-desc {
+  margin: 2px 0 0;
+  color: var(--muted-foreground);
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* Contact Channel Cards */
+.order-support-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+}
+
+.order-support-channel-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  background: color-mix(in srgb, var(--secondary) 45%, var(--card));
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 240ms var(--modal-ease) calc(var(--item-index, 0) * 35ms),
+    transform 240ms var(--modal-ease) calc(var(--item-index, 0) * 35ms),
+    background-color 160ms var(--modal-ease),
+    border-color 160ms var(--modal-ease),
+    box-shadow 160ms var(--modal-ease);
+}
+
+.order-support-popup[data-starting-style] .order-support-channel-card {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.order-support-channel-card:hover {
+  background: var(--secondary);
+  border-color: color-mix(in srgb, var(--foreground) 16%, var(--border));
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px #0000000a;
+}
+
+.order-support-channel-card:active {
+  transform: translateY(0) scale(0.992);
+}
+
+/* Brand Badges */
+.order-support-channel-badge {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  transition: transform 180ms var(--modal-ease);
+}
+
+.order-support-channel-card:hover .order-support-channel-badge {
+  transform: scale(1.05);
+}
+
+/* WeChat: crisp soft green */
+.order-support-channel-badge--wechat {
+  background: color-mix(in srgb, #07c160 12%, var(--secondary));
+  color: #07c160;
+}
+.dark .order-support-channel-badge--wechat {
+  background: color-mix(in srgb, #07c160 18%, #1a1a1a);
+  color: #10d56c;
+}
+
+/* QQ: soft tencent cyan/blue */
+.order-support-channel-badge--qq {
+  background: color-mix(in srgb, #12b7f5 12%, var(--secondary));
+  color: #0092e0;
+}
+.dark .order-support-channel-badge--qq {
+  background: color-mix(in srgb, #12b7f5 18%, #1a1a1a);
+  color: #38bdf8;
+}
+
+/* Email: soft indigo/purple */
+.order-support-channel-badge--email {
+  background: color-mix(in srgb, #6366f1 12%, var(--secondary));
+  color: #6366f1;
+}
+.dark .order-support-channel-badge--email {
+  background: color-mix(in srgb, #6366f1 18%, #1a1a1a);
+  color: #818cf8;
+}
+
+/* Channel Info */
+.order-support-channel-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.order-support-channel-label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--muted-foreground);
+}
+
+.order-support-channel-value {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--foreground);
+  font-family: var(--font-mono, monospace);
+  letter-spacing: -0.2px;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+
+.order-support-channel-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms var(--modal-ease);
+}
+
+.order-support-channel-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Action / Copy Button */
+.order-support-channel-card .copy-control {
+  flex-shrink: 0;
+}
+
+.order-support-channel-card .copy-control > button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--muted-foreground);
+  background: transparent;
+  transition:
+    background-color 150ms var(--modal-ease),
+    color 150ms var(--modal-ease),
+    transform 150ms var(--modal-ease);
+}
+
+.order-support-channel-card .copy-control > button:hover {
+  background: color-mix(in srgb, var(--foreground) 8%, transparent);
+  color: var(--foreground);
+}
+
+.order-support-channel-card .copy-control > button:active {
+  transform: scale(0.92);
+}
+
+.order-support-channel-card .copy-control[data-state=copied] > button {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 12%, transparent);
+  transform: scale(1.05);
+}
+
+/* Empty State */
+.order-support-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0;
+  padding: 12px 11px;
+  border-radius: 12px;
+  border: 1px dashed color-mix(in srgb, var(--border) 80%, transparent);
+  background: color-mix(in srgb, var(--secondary) 40%, var(--card));
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.order-support-empty-icon {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.order-support-empty p {
+  margin: 0;
+}
+
+/* Footer / Tip Banner */
+.order-support-footer {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+.order-support-tip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--secondary) 65%, var(--background));
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+}
+
+.order-support-tip-icon {
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+  opacity: 0.85;
+}
+
+.order-support-tip span {
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted-foreground);
+}
+
+/* Reduced Motion Guard (Transitions.dev standard) */
+@media (prefers-reduced-motion: reduce) {
+  .order-support-popup,
+  .order-support-guide,
+  .order-support-trigger,
+  .order-support-trigger::after,
+  .order-support-channel-card,
+  .order-support-channel-badge,
+  .order-support-channel-card .copy-control > button,
+  .order-support-channel-link {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .order-support-channel-card .copy-control > button {
+    width: 44px;
+    height: 44px;
+  }
+}

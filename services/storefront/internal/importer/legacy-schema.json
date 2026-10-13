@@ -1,0 +1,2865 @@
+{
+  "migrations": [
+    {
+      "name": "0001_launch_interest.sql",
+      "sha256": "d364dfb5da10962c2b439c6bf2749e6b0685aef6bd9201202a6496cb39ea2a80"
+    },
+    {
+      "name": "0002_commerce.sql",
+      "sha256": "838a45e1ebce587a2bb5c521ced3aecc168cfb693b959584d861c91fe5ed5f73"
+    },
+    {
+      "name": "0003_admin_totp.sql",
+      "sha256": "42bde9d998d2f0669654faf1c45a5e553a8353a72da47033866888ef8ff67455"
+    },
+    {
+      "name": "0004_partners.sql",
+      "sha256": "afcde50764358ba760b6a9b5e48e1cbb40869ef228e15fd078746c1a40367288"
+    },
+    {
+      "name": "0005_payout_items.sql",
+      "sha256": "7394336ec9ce413691420bfbee70ce156461c84d389c12a16a3427b71e4ee23f"
+    },
+    {
+      "name": "0006_after_sales.sql",
+      "sha256": "304248fb5d2118d332eac70af77ace6e74cb7fb91c0329002ff8c33e7a8aab5c"
+    },
+    {
+      "name": "0007_payments.sql",
+      "sha256": "cd0bbd6bfcd7321d00ccfb79f2eb293106a45d6a0e347be62558f01f79281a73"
+    },
+    {
+      "name": "0008_payment_testing.sql",
+      "sha256": "23f696206195e3afe38bfea9313ce01340949e390368ba857f3874c08dac7b35"
+    },
+    {
+      "name": "0009_recharge.sql",
+      "sha256": "1efe7d00f892beeff7ee708e42fe5ccddc54b9c29e33351e3c07381b30e87869"
+    },
+    {
+      "name": "0010_recharge_review.sql",
+      "sha256": "3c5e93ced0e855c15af39c2e4245500085712c22ba657c5c8fc8d9a831b80aab"
+    },
+    {
+      "name": "0011_recharge_payment_qr.sql",
+      "sha256": "d8bdef1fb374c5184015b383e4adcc4fca69aea951d8064db7b6e1180d99ba69"
+    },
+    {
+      "name": "0012_support_contacts.sql",
+      "sha256": "82097d31c35e3f78fd2ccc753de21a5e6fde3840a1f9bf94ef378720548d8e67"
+    },
+    {
+      "name": "0013_partner_default_prices.sql",
+      "sha256": "7f42a2eb1da308c11779bd6c8910d8578de9974fd4fcdc06865f44ce3b2e702a"
+    },
+    {
+      "name": "0014_order_redemption_block.sql",
+      "sha256": "9e55db0eecd1d7bc2daf2d0d33beac12dacc401a978cf5326fff5062290542f0"
+    },
+    {
+      "name": "0015_visitor_analytics.sql",
+      "sha256": "35cee95209977aaf76a6bfe477f50996ffa8516c6211e029fab267fdb2b489de"
+    },
+    {
+      "name": "0016_payout_notifications.sql",
+      "sha256": "5bd45bbe61e74d67c8db81e0f53866fed2234dcc539b526f1a391808a469aef0"
+    },
+    {
+      "name": "0017_chatgpt_subscription_tiers.sql",
+      "sha256": "81ca29c7da585986807b3488e2243680bd955d851ff6e621363c0bd087fd32b1"
+    },
+    {
+      "name": "0018_admin_email_auth.sql",
+      "sha256": "872be3fd36471d92d4b6391d876dbd3305f2448e59b93b8643688884f79d5ef8"
+    },
+    {
+      "name": "0019_payout_cooldown_reset.sql",
+      "sha256": "efd2dd29263d3ce0e2c32101ee62f236aa35f15cf008c7c6a1a1b3090ee26c81"
+    },
+    {
+      "name": "0020_accounting.sql",
+      "sha256": "94a82d5b402e186f3bf7a998bf4385014aeab74579c702a801dfc58b9ea3e56a"
+    },
+    {
+      "name": "0021_customer_management.sql",
+      "sha256": "7df16a8fd10663399a2db91c156b63169728360c990bdefe7d6c4e6cdfca2a6f"
+    },
+    {
+      "name": "0022_recharge_progress.sql",
+      "sha256": "3c6e69f20965811bda7c7576dede1692f24cc078e309eddb0c681fc8c746a1c7"
+    },
+    {
+      "name": "0023_partner_invoices.sql",
+      "sha256": "a8d0ca99a9fdc23a58658bf720f168a5c11643e9bb3c92fbbdf255fbd9fd9988"
+    },
+    {
+      "name": "0024_partner_announcements.sql",
+      "sha256": "990bf4143575495e3f7968ec0067a49e0bc138ad224066934fda223d3af873d4"
+    },
+    {
+      "name": "0025_recharge_reminders.sql",
+      "sha256": "e645ed00ece8a2ca8d9174a88656b6a37bbcc2bb9cad308a27652d704bbaabd2"
+    },
+    {
+      "name": "0026_platform_order_status.sql",
+      "sha256": "ca18b8f432b1c6a27d8d1bae837f2227da2c38a58644811343485bf8a88dce9a"
+    },
+    {
+      "name": "0027_gmail_launch_interest.sql",
+      "sha256": "115814d0bc3850cb09594a372f6b65a09ccfa86db3a9d3c5b57f81057843de3d"
+    },
+    {
+      "name": "0028_recharge_public_result.sql",
+      "sha256": "811216f5e5550fc0d52fa9f2068efbfe77fcfd98e93904b0ccb6612b1d07f64e"
+    },
+    {
+      "name": "0029_email_deliveries.sql",
+      "sha256": "df6a5fdedb3ad447df607d3630549c076e120db71fd91179d7c2d6c9f166e02c"
+    },
+    {
+      "name": "0030_email_membership_catalog.sql",
+      "sha256": "26530e7299d943708142ea8868d911452d1d1cbda4092fe69c8a32b2cc7fb544"
+    },
+    {
+      "name": "0031_gmail_supplier.sql",
+      "sha256": "b72f053a9a86c8d4463b165339f62d9b0e9b2109da33751240bb2c620f21dee3"
+    },
+    {
+      "name": "0032_gmail_customer_copy.sql",
+      "sha256": "0e8e9a622b2156b6d10d08a7a43f701ecf5ca89f84038cb5e97ff2f82f2d8221"
+    },
+    {
+      "name": "0033_delivery_supplier_auto_delivery.sql",
+      "sha256": "5f0551788cbde4de43a5c62d7065218035cf6c61f1a38b52cd6dfb59c60403ec"
+    },
+    {
+      "name": "0034_xgift_checkout.sql",
+      "sha256": "a54bed7c8c8191d61ee8b762da77fa8921e21bd1a5614e07cefcde7ac41567bd"
+    },
+    {
+      "name": "0035_xgift_partner_prices.sql",
+      "sha256": "80a84fae6bc40ac88b9334e156e4766f7dc5a1d2e3a09a5a1bab177713f57c08"
+    },
+    {
+      "name": "0036_xgift_normal_sales.sql",
+      "sha256": "f462c97510a7fc844acb426be5c42efd3f7c1c0d3b7a9ebe78bfde9383a56ff4"
+    },
+    {
+      "name": "0037_xgift_supplier_backend.sql",
+      "sha256": "82a94405a58480e9b8b849b316b421080e7a64125b0e6d10ec02cd0441fad245"
+    },
+    {
+      "name": "0038_xgift_recovery_attempts.sql",
+      "sha256": "c392e5640d83030bd07b16f87c43dd8419e256d10ce327fba4e4a0e0ac4ab59b"
+    },
+    {
+      "name": "0039_partner_product_order.sql",
+      "sha256": "1ea8a75f32995256edc9691a42b8a5daedd90384095eae36dc25520444248a09"
+    },
+    {
+      "name": "0040_telegram_partners.sql",
+      "sha256": "ac64950064d483e5070a9c22b9ec2262658c5d55e999a96c7cc79e5a2985f00b"
+    },
+    {
+      "name": "0041_telegram_partner_contacts.sql",
+      "sha256": "0d26e7a0494b1e523085a73241aba98ea830b4749212cc1260cd3d65d5c188da"
+    }
+  ],
+  "tables": [
+    {
+      "name": "account_supplier_orders",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "goods_id",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "goods_name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "api_base",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "app_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "max_cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "instructions",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "supplier_order",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "actual_cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "cards",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "attempted_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "accounting_costs",
+      "columns": [
+        {
+          "name": "plan",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "accounting_items",
+      "columns": [
+        {
+          "name": "settlement_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 2
+        },
+        {
+          "name": "plan",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "plan_name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "kind",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "sale_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "refund_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "accounting_settlements",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "base_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "previous_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "from_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "closed_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "order_count",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "adjustment_count",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "sale_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "refund_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "profit_cents",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "accounting_state",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "pk": 1
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "last_settlement_id",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "admin_audit",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "action",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "target_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "admin_email_login_codes",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "credential_version",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "attempts",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "ready",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "consumed_by",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "admin_login_limits",
+      "columns": [
+        {
+          "name": "key",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "attempts",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "reset_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "admin_sessions",
+      "columns": [
+        {
+          "name": "token_hash",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "credential_version",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "admin_totp_usage",
+      "columns": [
+        {
+          "name": "credential_version",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "last_step",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "login_token",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "catalog_plans",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "product_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "price_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "enabled",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "renewal_only",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "purchase_note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "delivery_instructions",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "partner_enabled",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "crm_accounts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "customer_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "account",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "current_subscription_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "crm_customers",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "wechat",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "qq",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "source",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "crm_subscriptions",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "account_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "previous_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "plan",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "plan_name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "kind",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "paid_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "opened_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "customer_email_sessions",
+      "columns": [
+        {
+          "name": "token_hash",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "credential_version",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "customer_login_codes",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "attempts",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "used",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "delivery_supplier_orders",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "service_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "credential_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "request_key",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "request_body",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "max_usd_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "cny_per_usd",
+          "type": "REAL",
+          "pk": 0
+        },
+        {
+          "name": "instructions",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "supplier_order",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "actual_usd_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "actual_cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "value",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "attempted_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "next_check_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "actual_usd_micros",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "email_deliveries",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "kind",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "value",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "instructions",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "mail_body",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "request_key",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "first_attempt_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "sent_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "provider_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "invoice_events",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "invoice_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "actor",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "action",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "invoice_payments",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "invoice_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "provider",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "account",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "amount_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "qr",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "trade_no",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "notified_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "launch_interest",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "product",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "token_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "consent_version",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "order_events",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "actor",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "action",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "from_status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "to_status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "order_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "owner_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "idempotency_key",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "plan",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "plan_name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "price_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "mode",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "payment_status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "started_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "outcome",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "sms_phone",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "last_event_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "partner_name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "payout_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "customer_email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "refunded_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "refund_hold",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "is_test",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "redemption_blocked",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "purchase_note",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_announcements",
+      "columns": [
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "enabled",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "placement",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "title",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "content",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "change_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_debits",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "refund_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "amount_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "payout_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_default_price_settings",
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "pk": 1
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "change_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_default_prices",
+      "columns": [
+        {
+          "name": "plan",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_invoices",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "title",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "tax_number",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "invoice_type",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "address",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "phone",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "bank_name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "bank_account",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "base_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "fee_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "include_fee",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "invoice_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "paid_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "submitted_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "completed_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "platform_mode",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "platform_reference",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "admin_note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_login_codes",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "auth_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "attempts",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "used",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_payout_debit_items",
+      "columns": [
+        {
+          "name": "payout_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "debit_id",
+          "type": "TEXT",
+          "pk": 2
+        },
+        {
+          "name": "amount_cents",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_payout_items",
+      "columns": [
+        {
+          "name": "payout_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 2
+        },
+        {
+          "name": "profit_cents",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_payouts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "amount_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "recipient",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "reference",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "handled_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "request_key",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "reviewed_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "review_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "gross_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "deduction_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "cooldown_exempt",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_prices",
+      "columns": [
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "plan",
+          "type": "TEXT",
+          "pk": 2
+        },
+        {
+          "name": "cost_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "price_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_product_order",
+      "columns": [
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "product_ids",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "change_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partner_sessions",
+      "columns": [
+        {
+          "name": "token_hash",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "auth_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "credential_version",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "partners",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "slug",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "name",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "active",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "auth_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "payments",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "provider",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "account",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "amount_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "trade_no",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "qr",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "last_event_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "notified_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "payout_notifications",
+      "columns": [
+        {
+          "name": "payout_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "delivered_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "locked_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lock_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "attempt_count",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "recharge_orders",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "account",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "product_code",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "collection_mode",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "create_body",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "remote_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "payment_status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "payment_url",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "attempted_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "supply_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "merchant_margin_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "refunded_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "financial_hold",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "notify_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "checked_notify_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "payment_qr",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "reported_margin_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "verified_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "recharge_redemptions",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "attempt_no",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "request_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "credential_mode",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "remote_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "fallback",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "failure_code",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "account_email_masked",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "finished_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "progress_stage",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "progress_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "progress_updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "error_category",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "result_code",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "recharge_refunds",
+      "columns": [
+        {
+          "name": "case_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "create_body",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "remote_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "recharge_reminders",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "paid_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "first_attempt_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "attempt_count",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "delivered_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "cancelled_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "message_json",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "recipient",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "locked_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lock_token",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "recharge_webhooks",
+      "columns": [
+        {
+          "name": "account",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "event_id",
+          "type": "TEXT",
+          "pk": 2
+        },
+        {
+          "name": "event_type",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "body_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "received_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "refund_cases",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "request_key",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "reason",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "requested_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "approved_cents",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "reference",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "last_event_id",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "refund_events",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "case_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "actor",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "support_contacts",
+      "columns": [
+        {
+          "name": "owner",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "wechat",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "qq",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "change_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "telegram_partner_applications",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "group_id",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "partner_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "wechat",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "qq",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "mail_status",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "mail_attempts",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "notice_sent",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lock_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lock_until",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "telegram_partner_sessions",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "INTEGER",
+          "pk": 1
+        },
+        {
+          "name": "group_id",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "step",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "wechat",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "qq",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "email",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "last_update_id",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "lock_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lock_until",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "telegram_partner_updates",
+      "columns": [
+        {
+          "name": "update_id",
+          "type": "INTEGER",
+          "pk": 1
+        },
+        {
+          "name": "lock_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lock_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "reply",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "visitor_days",
+      "columns": [
+        {
+          "name": "day",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "shop_id",
+          "type": "TEXT",
+          "pk": 2
+        },
+        {
+          "name": "visitor_hash",
+          "type": "TEXT",
+          "pk": 3
+        },
+        {
+          "name": "page_views",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "xgift_preflight_backends",
+      "columns": [
+        {
+          "name": "token",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "supplier_backend",
+          "type": "TEXT",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "xgift_preflights",
+      "columns": [
+        {
+          "name": "token",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "owner_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "username",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "recipient_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "product_code",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "points",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "expires_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "xgift_purchases",
+      "columns": [
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "username",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "recipient_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "product_code",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "points",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "credential_hash",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "state",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "supplier_order",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "receipt",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "failure_code",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_token",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "lease_until",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "next_check",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "attempted_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "updated_at",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "supplier_backend",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "supplier_merchant_order_no",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "recovery_attempt",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    },
+    {
+      "name": "xgift_recovery_attempts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "pk": 1
+        },
+        {
+          "name": "order_id",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "attempt",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "merchant_order_no",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "previous_merchant_order_no",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "previous_supplier_order",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "previous_failure_code",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "expected_order_version",
+          "type": "INTEGER",
+          "pk": 0
+        },
+        {
+          "name": "actor",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "note",
+          "type": "TEXT",
+          "pk": 0
+        },
+        {
+          "name": "created_at",
+          "type": "INTEGER",
+          "pk": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "xgift_recovery_attempts": [{"name":"previous_stage","type":"TEXT","pk":0}],
+  "partner_product_order": [{"name":"hidden_product_ids","type":"TEXT","pk":0}]
+}

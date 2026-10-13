@@ -1,0 +1,56 @@
+.membership-product { overflow:hidden; }
+.membership-product .store-product-heading h3 { letter-spacing:-.6px; }
+.membership-product .store-product-heading > span { background:transparent; color:var(--muted-foreground); }
+.membership-scene { position:relative; height:185px; flex:0 0 185px; margin:6px -8px 0; border-radius:18px; overflow:hidden; isolation:isolate; }
+.scene-gemini { background:radial-gradient(ellipse at 45% 55%,#e2e3ff 0%,#f0effe 40%,#f7f7fc 75%); }
+.scene-duolingo { background:radial-gradient(ellipse at 50% 70%,#e5f5c9 0%,#f4faea 52%,#f8fbf3 80%); }
+.membership-visual { width:100%; height:100%; position:relative; animation:membership-enter .8s cubic-bezier(.2,.8,.2,1) both; }
+.duo-art { width:100%; height:100%; object-fit:contain; }
+.duo-animation { position:absolute; width:230px; height:197px; left:50%; top:50%; transform:translate(-50%,-50%); }
+.duo-animation > .duo-art, .duo-animation-player { position:absolute; inset:0; }
+.duo-animation-player { opacity:0; }
+.duo-animation[data-ready="true"] > .duo-art { visibility:hidden; }
+.duo-animation[data-ready="true"] > .duo-animation-player { opacity:1; }
+.duo-word { position:absolute; padding:8px 13px; border-radius:13px 13px 3px 13px; font-size:13px; font-weight:650; color:#4c7932; background:#fff; box-shadow:0 4px 15px #3e671008; animation:word-float 5.8s ease-in-out infinite; }
+.word-hello { top:33px; left:18px; transform:rotate(-9deg); }
+.word-bonjour { top:54px; right:16px; transform:rotate(9deg); animation-delay:-2.1s; font-size:11px; }
+.membership-duration { position:absolute; right:18px; bottom:16px; font-size:28px; font-weight:600; letter-spacing:-1px; color:#42622d; line-height:1; text-align:right; }
+.membership-duration > span { display:block; margin-top:7px; font-size:9px; letter-spacing:.3px; font-weight:500; }
+.scene-gemini .membership-duration { color:#756695; }
+.gemini-star { width:105px; height:105px; position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); animation:gemini-float 7s ease-in-out infinite; filter:drop-shadow(0 12px 24px #7776d732); }
+.gemini-art { width:100%; height:100%; }
+.gemini-orbit { position:absolute; width:190px; height:96px; border:1px solid #b2a9e93d; border-radius:50%; left:50%; top:46%; transform:translate(-50%,-50%) rotate(-30deg); animation:gemini-orbit 18s linear infinite; }
+.orbit-outer { width:240px; height:146px; animation-direction:reverse; opacity:.6; }
+.gemini-orbit::after { content:''; position:absolute; width:7px; height:7px; border-radius:50%; background:#ab9ae0; left:19%; top:8%; box-shadow:0 0 14px #fff; }
+.gemini-spark { position:absolute; color:#9181d4; font-size:22px; animation:gemini-twinkle 4s ease-in-out infinite; }
+.spark-one { left:19%; bottom:25%; }.spark-two { right:23%; top:20%; font-size:15px; animation-delay:-2s; }
+.membership-product .store-action { transition:transform .2s,background .2s; }.membership-product .store-action:hover { transform:translateY(-2px); }
+.product-area > .membership-scene { margin:16px 0 22px; height:220px; flex-basis:220px; }
+.membership-purchase-note { margin:0 0 24px; white-space:pre-line; font-size:13px; line-height:1.8; }
+.product-mark.mark-duolingo { background:#f0f8e7; }
+.product-mark.mark-gemini { background:#f3f1fd; }
+.product-mark .duo-art { position:static; width:100%; height:100%; transform:none; }
+.product-mark .gemini-art { width:74%; height:74%; }
+.product-mark .duo-art * { animation:none!important; }
+.delivery-guide { display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; padding-top:52px; padding-bottom:30px; }
+.delivery-guide article { border-top:1px solid var(--border); padding-top:20px; }
+.delivery-guide small { color:var(--muted-foreground); font-size:11px; }.delivery-guide h3 { font-size:17px; margin:14px 0 8px; }.delivery-guide p { font-size:13px; line-height:1.8; color:var(--muted-foreground); }
+.email-delivery-panel { margin:22px 0; padding-top:24px; border-top:1px solid var(--border); }
+.email-delivery-panel h3 { font-size:16px; margin-bottom:8px; }.email-delivery-panel p { font-size:12px; color:var(--muted-foreground); line-height:1.8; }
+.email-delivery-panel label { display:block; font-size:12px; margin:16px 0 7px; }
+.email-delivery-panel textarea { width:100%; padding:12px; border:1px solid var(--border); border-radius:8px; background:var(--background); font-size:13px; }
+.email-delivery-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.email-delivery-preview { width:100%; height:540px; border:1px solid var(--border); border-radius:12px; margin-top:16px; background:#f5f5f7; }
+.email-delivery-recipient { font-weight:600; overflow-wrap:anywhere; color:var(--foreground)!important; }
+.dark .scene-duolingo { background:radial-gradient(ellipse at 50% 70%,#25462a,#1b2820 70%); }.dark .scene-gemini { background:radial-gradient(ellipse at 45% 55%,#343550,#232332 70%); }
+.dark .membership-duration { color:#add488; }.dark .scene-gemini .membership-duration { color:#c2b8ed; }
+.membership-scene[data-paused="true"] * { animation-play-state:paused!important; }
+@keyframes membership-enter { from { opacity:0; transform:translateY(15px) scale(.96); } to { opacity:1; transform:none; } }
+@keyframes word-float { 0%,100% { translate:0 0; } 50% { translate:0 -7px; } }
+@keyframes gemini-float { 0%,100% { transform:translate(-50%,-50%) rotate(-6deg) scale(.97); } 50% { transform:translate(-50%,-57%) rotate(6deg) scale(1.05); } }
+@keyframes gemini-orbit { to { transform:translate(-50%,-50%) rotate(330deg); } }
+@keyframes gemini-twinkle { 0%,100% { opacity:.35; scale:.7; } 50% { opacity:1; scale:1.1; } }
+@media(max-width:600px) { .delivery-guide { grid-template-columns:1fr; gap:20px; }.duo-word { font-size:12px; }.email-delivery-preview { height:480px; } }
+@media(prefers-reduced-motion:reduce) { .membership-scene *, .membership-product .store-action { animation:none!important; transition:none!important; } }
+
+@media(prefers-reduced-motion:reduce) { .duo-animation[data-ready="true"] > .duo-art { visibility:visible; }.duo-animation[data-ready="true"] > .duo-animation-player { opacity:0; } }

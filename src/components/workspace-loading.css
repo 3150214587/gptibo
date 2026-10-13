@@ -1,0 +1,25 @@
+.workspace-boot { min-height:100dvh; display:grid; place-items:center; background:var(--background); color:var(--muted-foreground); }
+.workspace-boot>div { display:flex; align-items:center; gap:12px; font-size:13px; }
+.workspace-boot svg { width:26px; height:26px; color:var(--foreground); }
+.workspace-error { margin-block:12px; }
+.workspace-skeleton { padding:12px 22px; min-height:280px; }
+.workspace-skeleton-compact { min-height:132px; }
+.workspace-skeleton-detail { min-height:420px; padding-inline:0; }
+.workspace-skeleton-overview { min-height:465px; padding-inline:0; }
+.workspace-skeleton-visual { animation:workspace-loader-in 160ms ease-out 120ms both; }
+.workspace-skeleton-row { min-height:64px; display:grid; grid-template-columns:1.5fr 1fr .5fr; align-items:center; gap:10%; border-bottom:1px solid var(--border); }
+.workspace-skeleton-row:last-child { border:0; }
+.workspace-skeleton i,.workspace-skeleton b { display:block; height:10px; border-radius:4px; background:var(--muted); }
+.workspace-skeleton-row:nth-child(even) i:first-child { width:75%; }
+.workspace-skeleton-row i:last-child { width:70%; justify-self:end; }
+.workspace-skeleton-metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:25px; padding:24px; margin-bottom:32px; border:1px solid var(--border); border-radius:14px; }
+.workspace-skeleton-metrics i { width:60%; margin-bottom:18px; }
+.workspace-skeleton-metrics b { width:40%; height:30px; }
+.workspace-refresh { position:absolute; top:0; inset-inline:0; height:2px; overflow:hidden; pointer-events:none; z-index:1; animation:workspace-loader-in 120ms ease-out 250ms both; }
+.workspace-refresh i { display:block; width:30%; height:100%; background:var(--primary); opacity:.55; animation:workspace-refresh-slide 1.2s ease-in-out infinite; }
+.admin-panel,.admin-main,.partner-main { position:relative; }
+.workspace-enter { animation:workspace-loader-in 140ms ease-out both; }
+@keyframes workspace-loader-in { from { opacity:0; } to { opacity:1; } }
+@keyframes workspace-refresh-slide { from { transform:translateX(-100%); } to { transform:translateX(440%); } }
+@media(max-width:760px) { .workspace-skeleton { padding-inline:14px; } .workspace-skeleton-metrics { grid-template-columns:1fr 1fr; } }
+@media(prefers-reduced-motion:reduce) { .workspace-boot>div,.workspace-skeleton-visual,.workspace-refresh,.workspace-refresh i,.workspace-enter { animation:none; } .workspace-refresh i { width:100%; opacity:.25; } }

@@ -1,0 +1,63 @@
+{
+  "name": "gptibo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run emails:build && tsc -b && tsc -p tsconfig.worker.json && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "test": "npm run emails:build && node --test tests/*.test.ts",
+    "preview:worker": "npm run build && wrangler dev",
+    "emails:build": "tsc -p tsconfig.emails.json && tsx --tsconfig tsconfig.emails.json scripts/build-emails.tsx",
+    "emails:preview": "npm run emails:build -- --preview",
+    "emails:dev": "email dev --dir emails --port 3002",
+    "security:scan": "python3 scripts/scan-public-source.py"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "@cloudflare/kumo": "^2.14.0",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@fontsource-variable/geist": "^5.3.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.4.0",
+    "date-fns": "^4.4.0",
+    "exceljs": "^4.4.0",
+    "lottie-web": "^5.13.0",
+    "lucide-react": "^1.48.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.2.8",
+    "react-day-picker": "^10.0.2",
+    "react-dom": "^19.2.8",
+    "recharts": "^3.8.0",
+    "tailwindcss": "^4.3.3",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@react-email/render": "^2.1.0",
+    "@types/node": "^24.19.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "react-email": "^6.11.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0",
+    "wrangler": "^4.141.0"
+  },
+  "overrides": {
+    "exceljs": {
+      "uuid": "^11.1.1"
+    }
+  },
+  "license": "MIT",
+  "description": "Self-hosted storefront and administration with sanitized integration examples"
+}

@@ -1,0 +1,59 @@
+.service-dialog { width:min(500px,calc(100vw - 32px)); max-width:none; padding:24px; max-height:calc(100dvh - 32px); overflow-y:auto; gap:20px; }
+.service-form { display:grid; gap:12px; min-width:0; }
+.recovery-dialog .service-form input { min-height:44px; font-size:16px; touch-action:manipulation; }
+.service-form label { font-size:13px; font-weight:500; display:flex; justify-content:space-between; }
+.service-form label span,.service-form p,.service-policy,.service-callout p { color:var(--muted-foreground); font-size:12px; line-height:1.7; }
+.service-form [data-slot=textarea] { border-radius:10px; background:var(--background); font-size:13px; }
+.service-callout { display:grid; justify-items:start; gap:12px; padding:20px; border-radius:14px; background:var(--muted); }
+.service-policy { display:flex; align-items:start; gap:8px; }
+.service-policy svg { flex-shrink:0; margin-top:3px; }
+.refund-list-reason { display:block; width:clamp(180px,24vw,320px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.refund-record { border:1px solid var(--border); border-radius:12px; padding:16px; display:grid; gap:12px; font-size:13px; overflow-wrap:anywhere; }
+.refund-record>div { display:flex; justify-content:space-between; gap:12px; }
+.refund-record ol { display:grid; gap:12px; padding:0; list-style:none; }
+.refund-record li { display:grid; gap:3px; font-size:12px; }
+.refund-record time { color:var(--muted-foreground); font-size:11px; }
+.orders-heading-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.order-service-paused { padding:28px 16px; text-align:center; background:var(--muted); border-radius:12px; font-size:14px; line-height:1.8; }
+.order-contact-email { color:var(--muted-foreground); font-size:12px; overflow-wrap:anywhere; }
+@media(max-width:600px) { .orders-heading { flex-wrap:wrap; gap:16px; } .service-dialog { padding:22px; } }
+
+.service-dialog h2 { font-size:22px; font-weight:600; letter-spacing:-.03em; }
+.service-dialog [data-slot=dialog-title] { outline:none; }
+.service-dialog [data-slot=dialog-close] { top:18px; right:18px; }
+.service-form input { min-height:42px; border-radius:10px; padding-inline:12px; font-size:14px; }
+.service-form button[type=submit] { min-height:42px; border-radius:10px; font-size:13px; font-weight:500; }
+.service-callout button { min-height:38px; border-radius:8px; font-size:13px; }
+.service-form select { min-height:40px; border:1px solid var(--border); border-radius:10px; padding:0 12px; background:var(--background); font-size:13px; }
+.service-dialog [data-slot="dialog-description"] { line-height:1.7; }
+.service-stale { color:var(--muted-foreground); font-size:12px; line-height:1.7; }
+@media(max-width:600px) { .live-checkout textarea,.live-checkout select,.service-form input { font-size:16px; } }
+
+.purchase-fee-summary { margin: 0; display: grid; gap: 7px; font-size: 13px; color: var(--muted-foreground); }
+.purchase-fee-summary > div { display: flex; justify-content: space-between; gap: 16px; }
+.purchase-fee-summary dd { margin: 0; font-variant-numeric: tabular-nums; }
+.purchase-fee-summary > div:last-child { color: var(--foreground); font-weight: 600; padding-top: 5px; }
+
+/* Each beneficiary keeps an independent, readable refund ledger. */
+.refund-partner-debits { border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+.refund-debits-heading { padding:18px 20px; background:var(--secondary); }
+.refund-debits-heading h3 { font-size:14px; font-weight:550; margin:0 0 6px; }
+.refund-debits-heading p { color:var(--muted-foreground); font-size:12px; }
+.refund-partner-debits article { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:16px; padding:20px; }
+.refund-partner-debits article+article { border-top:1px solid var(--border); }
+.refund-debit-person { display:grid; align-content:start; gap:6px; min-width:0; }
+.refund-debit-person strong { font-size:13px; font-weight:550; }
+.refund-debit-person span { font-size:12px; color:var(--muted-foreground); overflow-wrap:anywhere; }
+.refund-debit-amount { display:grid; justify-items:end; gap:7px; }
+.refund-debit-amount>span { color:var(--muted-foreground); font-size:11px; }
+.refund-debit-amount>strong { font-size:20px; font-weight:550; font-variant-numeric:tabular-nums; }
+.refund-debit-reference { grid-column:1/-1; font-size:11px; color:var(--muted-foreground); overflow-wrap:anywhere; }
+.refund-debit-reference span { font-family:var(--font-mono); }
+@media(max-width:400px) {
+  .refund-partner-debits article { grid-template-columns:1fr; padding:16px; }
+  .refund-debit-amount { justify-items:start; }
+}
+.purchase-coupon { margin-block: 12px; }
+.purchase-coupon-controls { display:flex; gap:8px; margin-block:6px; }
+.purchase-coupon p { font-size:13px; color:var(--muted-foreground); }
+.purchase-coupon [role=alert] { color:var(--destructive); }

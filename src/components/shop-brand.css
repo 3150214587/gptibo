@@ -1,0 +1,9 @@
+.brand .shop-brand-logo{width:32px;height:32px;object-fit:contain;flex:none;border-radius:6px}
+.shop-brand-name{max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.shop-brand-avatar{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;border-radius:6px;background:var(--muted)}
+.shop-brand-avatar>svg{width:22px;height:22px;color:var(--muted-foreground)}
+.brand .shop-brand-avatar>.shop-brand-logo{position:absolute;inset:0;background:var(--background)}
+.shop-brand-placeholder{display:inline-flex;align-items:center;gap:10px;max-width:100%}
+.shop-brand-placeholder i{display:block;width:32px;height:32px;border-radius:6px;background:var(--muted)}
+.shop-brand-placeholder i+i{width:88px;height:18px;border-radius:4px}
+@media(max-width:640px){.shop-brand-name{max-width:140px}.brand .shop-brand-logo,.shop-brand-avatar{width:28px;height:28px}}

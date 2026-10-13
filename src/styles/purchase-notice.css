@@ -1,0 +1,25 @@
+.purchase-notice { display: flex; flex-direction: column; width: min(520px, calc(100vw - 32px)); max-width: 520px; max-height: calc(100dvh - 40px); overflow: hidden; padding: 0; gap: 0; }
+.purchase-notice [data-slot="dialog-header"] { flex-shrink: 0; padding: 24px 48px 0 24px; gap: 5px; text-align: left; }
+.purchase-notice [data-slot="dialog-title"] { font-size: 20px; line-height: 1.4; }
+.purchase-notice [data-slot="dialog-description"] { font-size: 12px; line-height: 1.6; }
+.purchase-notice-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 18px 24px; font-size: 13px; }
+.purchase-notice-emphasis { display: flex; align-items: flex-start; gap: 8px; padding: 11px 12px; border-radius: 8px; background: var(--muted); line-height: 1.65; }
+.purchase-notice-emphasis strong { font-weight: 600; }
+.purchase-notice-emphasis svg { flex-shrink: 0; margin-top: 3px; }
+.purchase-notice-steps { display: grid; gap: 8px; margin: 16px 0; padding-left: 20px; list-style: decimal; line-height: 1.7; }
+.purchase-notice-steps li { padding-left: 2px; }
+.purchase-notice-steps li::marker { color: var(--muted-foreground); font-size: 12px; font-variant-numeric: tabular-nums; }
+.purchase-notice-product { border-top: 1px solid var(--border); padding-top: 14px; }
+.purchase-notice-product h3 { margin: 0 0 8px; font-size: 12px; font-weight: 600; }
+.purchase-notice-product p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; line-height: 1.85; }
+.purchase-notice-help { margin: 14px 0 0; color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
+.purchase-notice-footer { flex-shrink: 0; display: grid; gap: 12px; margin: 0 24px; padding: 14px 0 20px; border-top: 1px solid var(--border); }
+.purchase-notice-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.purchase-notice-actions button { min-height: 40px; padding-inline: 16px; }
+@media (max-width: 480px) {
+  .purchase-notice { max-height: calc(100dvh - 32px); }
+  .purchase-notice [data-slot="dialog-header"] { padding: 20px 44px 0 20px; }
+  .purchase-notice-body { padding: 16px 20px; }
+  .purchase-notice-footer { margin-inline: 20px; padding-bottom: 16px; gap: 10px; }
+  .purchase-notice-actions { display: grid; grid-template-columns: 1fr 1fr; }
+}

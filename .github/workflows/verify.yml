@@ -1,0 +1,62 @@
+name: Verify public source
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run security:scan
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Scan for credentials
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/gitleaks"
+          gh release download v8.30.1 --repo gitleaks/gitleaks --pattern 'gitleaks_8.30.1_linux_x64.tar.gz' --pattern 'gitleaks_8.30.1_checksums.txt' --dir "$RUNNER_TEMP/gitleaks"
+          cd "$RUNNER_TEMP/gitleaks"
+          sha256sum --check --ignore-missing gitleaks_8.30.1_checksums.txt
+          tar -xzf gitleaks_8.30.1_linux_x64.tar.gz
+          cd "$GITHUB_WORKSPACE"
+        # The dedicated scan below uses only tracked source, never dependencies.
+      - name: Scan tracked source
+        run: |
+          mkdir -p "$RUNNER_TEMP/public-source"
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/public-source"
+          "$RUNNER_TEMP/gitleaks/gitleaks" dir "$RUNNER_TEMP/public-source" --config .gitleaks.toml --redact
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: public_test
+          POSTGRES_DB: storefront_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd 'pg_isready -U public_test -d storefront_test'
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: services/storefront/go.mod
+          cache-dependency-path: services/storefront/go.sum
+      - run: go vet ./...
+        working-directory: services/storefront
+      - run: go test -count=1 -timeout 180s ./...
+        working-directory: services/storefront
+        env:
+          STOREFRONT_TEST_DATABASE_URL: postgres://public_test@127.0.0.1:5432/storefront_test?sslmode=disable

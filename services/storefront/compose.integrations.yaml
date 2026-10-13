@@ -1,0 +1,14 @@
+# Optional isolated integrations. All switches in the example are disabled.
+# Both processes require identical original supplier/payment identities.
+services:
+  api:
+    env_file: [.env.integrations]
+    volumes: [./.secrets/integrations:/run/integrations:ro]
+  worker:
+    env_file: [.env.integrations]
+    volumes: [./.secrets/integrations:/run/integrations:ro]
+  maintenance:
+    volumes: [./.imports:/imports:ro]
+    environment:
+      IMPORT_SNAPSHOT_FILE: /imports/snapshot.json
+      IMPORT_SHA256: ${IMPORT_SHA256:-}

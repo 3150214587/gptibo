@@ -1,0 +1,11 @@
+.secrets/
+bin/
+*.exe
+coverage.out
+.imports/
+.preview/
+.env.integrations
+!.env.integrations.example
+*.snapshot.json
+*.dump
+*.backup

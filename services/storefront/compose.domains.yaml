@@ -1,0 +1,17 @@
+# Explicit opt-in, appended after compose.yaml. Dedicated zone-scoped API token.
+services:
+  api:
+    environment: &domain-environment
+      CUSTOM_DOMAINS_ENABLED: "true"
+      CUSTOM_DOMAINS_ZONE: ${CUSTOM_DOMAINS_ZONE:?set the SaaS zone}
+      CUSTOM_DOMAINS_TARGET: ${CUSTOM_DOMAINS_TARGET:?set the CNAME target}
+      CUSTOM_DOMAINS_LIMIT: ${CUSTOM_DOMAINS_LIMIT:-100}
+      CF_SAAS_ZONE_ID: ${CF_SAAS_ZONE_ID:?set the SaaS zone ID}
+      CF_SAAS_API_TOKEN_FILE: /run/secrets/cf_saas_token
+    secrets: [cf_saas_token]
+  worker:
+    environment: *domain-environment
+    secrets: [cf_saas_token]
+secrets:
+  cf_saas_token:
+    file: ./.secrets/cf-saas-token

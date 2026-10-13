@@ -1,0 +1,11 @@
+title = "GPTibo public source"
+[extend]
+useDefault = true
+
+# Public RFC 4226/6238 test vector only; never used by runtime defaults.
+[[allowlists]]
+description = "Published RFC HOTP test vector"
+regexTarget = "secret"
+regexes = ['''^GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ$''']
+paths = ['''(?:^|/)(?:tests/[^/]+\.ts|services/storefront/internal/security/security_test\.go)$''']
+condition = "AND"

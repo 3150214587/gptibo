@@ -1,0 +1,24 @@
+.async-button { display:inline-grid; }
+.async-button-label { grid-area:1/1; display:inline-flex; align-items:center; justify-content:center; gap:7px; transition:opacity 150ms ease,transform 150ms ease; }
+.async-button-label[data-hidden=true] { opacity:0; visibility:hidden; transform:translateY(3px); pointer-events:none; }
+.async-button[aria-busy=true] { opacity:.85; cursor:progress; }
+.request-notice { display:flex; align-items:center; justify-content:center; gap:8px; color:var(--muted-foreground); font-size:11px; line-height:1.7; min-height:38px; padding:9px 0; animation:state-enter var(--text-swap-dur) ease both; }
+.request-indicator { width:5px; height:5px; flex-shrink:0; border-radius:50%; background:var(--primary); animation:payment-breathe 1.6s ease-in-out infinite; }
+.payment-status-mark { display:grid; place-items:center; width:64px; height:64px; border-radius:50%; background:var(--secondary); color:var(--muted-foreground); }
+.payment-status-success,.payment-status-loading { background:color-mix(in srgb,var(--primary) 8%,var(--card)); color:var(--primary); }
+.payment-status-expired { color:var(--warning); background:var(--warning-bg); }
+.payment-message { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
+.payment-message>strong { font-size:14px; font-weight:550; }
+.payment-message>p { font-size:12px; line-height:1.8; color:var(--muted-foreground); max-width:310px; }
+.payment-code-skeleton { width:232px; height:232px; position:relative; display:grid; place-items:center; border:1px solid var(--border); border-radius:12px; background:var(--secondary); color:var(--muted-foreground); overflow:hidden; }
+.payment-code-skeleton>span { position:absolute; width:42px; height:42px; border:5px solid var(--border); border-radius:5px; top:22px; left:22px; }
+.payment-code-skeleton>span:nth-child(2) { left:auto; right:22px; }
+.payment-code-skeleton>span:nth-child(3) { top:auto; bottom:22px; }
+.payment-code-skeleton:after { content:''; position:absolute; inset:0; background:linear-gradient(100deg,transparent 20%,color-mix(in srgb,var(--foreground) 4%,transparent),transparent 80%); transform:translateX(-100%); animation:payment-sheen 1.8s ease-in-out infinite; }
+.payment-confirmed>svg { animation:check-appear 320ms var(--modal-ease) both; }
+.checkout-action-feedback { min-height:38px; }
+.checkout-body:disabled { opacity:1; }
+.checkout-body:disabled button { cursor:wait; }
+@keyframes payment-breathe { 50% { opacity:.35; } }
+@keyframes payment-sheen { to { transform:translateX(100%); } }
+@media(prefers-reduced-motion:reduce) { .async-button-label { transition:none; transform:none; } .request-notice,.request-indicator,.payment-confirmed>svg,.payment-code-skeleton:after { animation:none; } .payment-code-skeleton:after { display:none; } }

@@ -1,0 +1,58 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+.wrangler
+.dev.vars
+.admin-auth/
+.xgift-private/
+__pycache__/
+.env
+.env.*
+!.env.example
+!.dev.vars.example
+*.local
+
+# Local design experiments and backups; retain the current baseline preview.
+artifacts/*
+
+# Private keys and credential exports
+*.pem
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.key
+*.p12
+*.pfx
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# Never publish deployment state, private data or source release output.
+.secrets/
+*.db
+*.dump
+*.backup
+*.snapshot.json
+*.har
+*.zip
+*.tar.gz
+.open-source-release/
+coverage/

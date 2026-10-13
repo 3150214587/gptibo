@@ -1,0 +1,22 @@
+# Optional explicit email-login configuration; base compose keeps mail disabled.
+services:
+  api:
+    environment:
+      MAIL_ENABLED: "true"
+      MAIL_FROM: ${MAIL_FROM:?set MAIL_FROM for this environment}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:?set an independent administrator username}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?set the fixed administrator email}
+      ADMIN_TOTP_SECRET_FILE: /run/secrets/admin_totp
+      RESEND_API_KEY_FILE: /run/secrets/resend_key
+    secrets: [admin_totp, resend_key]
+  worker:
+    environment:
+      MAIL_ENABLED: "true"
+      MAIL_FROM: ${MAIL_FROM:?set MAIL_FROM for this environment}
+      RESEND_API_KEY_FILE: /run/secrets/resend_key
+    secrets: [resend_key]
+secrets:
+  admin_totp:
+    file: ./.secrets/admin-totp
+  resend_key:
+    file: ./.secrets/resend-key

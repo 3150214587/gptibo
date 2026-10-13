@@ -1,0 +1,54 @@
+# Copy to .dev.vars and set independent local credentials.
+ADMIN_USERNAME= # Configure locally; never commit a real value.
+ADMIN_EMAIL= # Configure locally; never commit a real value.
+ADMIN_TOTP_SECRET= # Configure locally; never commit a real value.
+
+# Partner email login (optional)
+RESEND_API_KEY= # Configure locally; never commit a real value.
+RESEND_FROM= # Configure locally; never commit a real value.
+PARTNER_AUTH_SECRET= # Configure locally; never commit a real value.
+
+FEISHU_APP_ID= # Configure locally; never commit a real value.
+FEISHU_APP_SECRET= # Configure locally; never commit a real value.
+# Receiving user (ou_...) or chat (oc_...) for payout notifications.
+FEISHU_PAYOUT_RECIPIENT= # Configure locally; never commit a real value.
+
+# Nonfinancial purchase flow testing; disable before real fulfillment.
+ORDER_TESTING_ENABLED="true"
+
+# Payment adapter. This switch alone cannot turn test orders into real payments.
+PAYMENT_PROVIDER="alipay"
+PAYMENT_CHECKOUT_ENABLED="false"
+PAYMENT_TEST_ENABLED="false"
+PAYMENT_NOTIFY_ORIGIN="https://shop.example.invalid"
+ALIPAY_APP_ID= # Configure locally; never commit a real value.
+ALIPAY_SELLER_ID= # Configure locally; never commit a real value.
+ALIPAY_APP_PRIVATE_KEY= # Configure locally; never commit a real value.
+ALIPAY_PUBLIC_KEY= # Configure locally; never commit a real value.
+# Optional official sandbox gateway; default is the official production gateway.
+# ALIPAY_GATEWAY="https://openapi-sandbox.dl.alipaydev.com/gateway.do"
+
+# recharge.example.invalid Partner API: platform collection + automatic recharge.
+# Keep real purchases off until credentials, authorized products and callbacks are verified.
+RECHARGE_API_BASE="https://recharge.example.invalid/v1"
+RECHARGE_PARTNER_ID= # Configure locally; never commit a real value.
+# Optional platform application identifier; API requests are signed using Key ID.
+RECHARGE_APP_ID= # Configure locally; never commit a real value.
+RECHARGE_KEY_ID= # Configure locally; never commit a real value.
+RECHARGE_CLIENT_SECRET= # Configure locally; never commit a real value.
+RECHARGE_WEBHOOK_SECRET= # Configure locally; never commit a real value.
+RECHARGE_NOTIFY_URL="https://shop.example.invalid/api/recharge/webhook"
+RECHARGE_PRODUCT_MAP='{}'
+RECHARGE_CHECKOUT_ENABLED="false"
+
+ACCOUNT_SUPPLIER_API_BASE="https://accounts.example.invalid"
+ACCOUNT_SUPPLIER_APP_ID= # Configure locally; never commit a real value.
+ACCOUNT_SUPPLIER_APP_SECRET= # Configure locally; never commit a real value.
+ACCOUNT_SUPPLIER_GOODS_ID= # Configure locally; never commit a real value.
+ACCOUNT_SUPPLIER_MAX_COST_CENTS= # Configure locally; never commit a real value.
+ACCOUNT_SUPPLIER_CHECKOUT_ENABLED="false"
+
+# DeliverySupplier 自动采购，美元/USDT 按固定汇率折算人民币记账
+DELIVERY_SUPPLIER_API_KEY= # Configure locally; never commit a real value.
+DELIVERY_SUPPLIER_CHECKOUT_ENABLED=false
+DELIVERY_SUPPLIER_CNY_PER_USD= # Configure locally; never commit a real value.

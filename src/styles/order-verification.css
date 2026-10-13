@@ -1,0 +1,11 @@
+.order-verification { min-width:0; margin-block:8px 16px; }
+.order-verification-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:24px; margin-bottom:8px; font-size:12px; }
+.order-verification-retry { display:inline-flex; align-items:center; justify-content:center; gap:5px; min-height:32px; padding:4px 8px; margin:-2px -8px -2px 0; border-radius:6px; color:var(--muted-foreground); font-size:12px; font-weight:400; cursor:pointer; transition:color .15s,background-color .15s; }
+.order-verification-retry:hover { color:var(--foreground); background:var(--muted); }
+.order-verification-retry:focus-visible { outline:2px solid var(--ring); outline-offset:2px; }
+.order-verification-body { position:relative; min-width:0; }
+.order-verification-body[data-phase=loading] { min-height:65px; }
+.order-verification-widget { min-width:0; line-height:0; }
+.order-verification-loading { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:8px; background:var(--muted); color:var(--muted-foreground); font-size:12px; line-height:1.5; }
+.order-verification .order-verification-error { margin:8px 0 0; color:var(--destructive); font-size:12px; line-height:1.6; }
+@media(prefers-reduced-motion:reduce) { .order-verification-retry { transition:none; } }

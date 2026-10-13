@@ -1,0 +1,44 @@
+.support-settings-description { padding:20px 24px 0; color:var(--muted-foreground); font-size:13px; line-height:1.8; }
+.support-settings-form { padding:24px; max-width:608px; }
+.support-settings-form [data-slot=field-label] { font-size:13px; }
+.support-settings-form input { height:44px; }
+.support-settings-form [data-slot=field-description] { font-size:12px; line-height:1.8; }
+.support-settings-form>button { min-height:44px; margin-top:24px; }
+.support-settings-success { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--primary); padding:0 24px 24px; }
+.support-settings-panel>.workspace-error,.support-settings-panel>.workspace-skeleton { margin:20px 24px; }
+.support-contacts-dialog { width:calc(100% - 32px); max-width:420px; padding:24px; gap:20px; overflow-y:auto; }
+.support-contacts-dialog [data-slot=dialog-header] { gap:6px; padding-right:40px; }
+.support-contacts-dialog [data-slot=dialog-title] { font-size:20px; line-height:28px; font-weight:600; letter-spacing:-.4px; }
+.support-contacts-dialog [data-slot=dialog-description] { font-size:13px; line-height:20px; overflow-wrap:anywhere; }
+.support-contacts-dialog [data-slot=dialog-close] { top:16px; right:16px; }
+.support-contact-body { min-width:0; }
+.support-contact-list { margin:0; }
+.support-contact-row { display:grid; grid-template-columns:40px minmax(0,1fr) 44px; align-items:center; gap:12px; min-height:64px; padding:8px 0; }
+.support-contact-row+div { border-top:1px solid var(--border); }
+.support-contact-list dt { color:var(--muted-foreground); font-size:12px; line-height:20px; }
+.support-contact-list dd { margin:0; font-size:14px; font-weight:500; line-height:22px; overflow-wrap:anywhere; user-select:text; }
+.support-contact-list a { color:var(--foreground); text-decoration:none; }
+.support-contact-list a:hover { color:var(--primary); text-decoration:underline; }
+.support-contact-copy { width:44px; height:44px; color:var(--muted-foreground); }
+.support-contact-list .copy-control[data-state=copied] .support-contact-copy { color:var(--success); }
+.support-contact-body>.workspace-error+button { margin-top:12px; }
+.support-contact-empty { padding:8px 0 16px; }
+.support-contact-empty p { font-size:14px; font-weight:500; margin-bottom:8px; }
+.support-contact-empty span { color:var(--muted-foreground); font-size:12px; line-height:1.8; }
+.support-contact-footer { margin:0 -24px -24px; padding:8px 16px; }
+.support-help-button { width:100%; height:44px; justify-content:space-between; padding-inline:8px; font-size:13px; color:var(--muted-foreground); }
+@media(max-width:520px) {
+  .support-settings-description { padding:18px 18px 0; }
+  .support-settings-form { padding:20px 18px; }
+  .support-settings-success { padding:0 18px 20px; }
+  .support-contacts-dialog { padding:20px; gap:16px; }
+  .support-contacts-dialog [data-slot=dialog-close] { top:12px; right:12px; }
+  .support-contact-row { grid-template-columns:32px minmax(0,1fr) 44px; gap:8px; }
+  .support-contact-footer { margin-inline:-20px; margin-bottom:-20px; padding-inline:12px; }
+}
+@media(max-width:380px) {
+  .support-contact-row { grid-template-columns:minmax(0,1fr) 44px; gap:2px 12px; min-height:72px; padding-block:12px; }
+  .support-contact-row dt { grid-column:1; grid-row:1; line-height:18px; }
+  .support-contact-row dd { grid-column:1; grid-row:2; }
+  .support-contact-row .copy-control { grid-column:2; grid-row:1/3; }
+}

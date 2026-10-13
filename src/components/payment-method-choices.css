@@ -1,0 +1,14 @@
+.payment-method-choices { padding:20px; border:1px solid var(--border); border-radius:12px; }
+.payment-method-choices h3 { margin:0 0 16px; font-size:15px; }
+.payment-method-buttons { display:flex; flex-wrap:wrap; gap:12px; }
+.payment-method-buttons > button { flex:1; min-width:120px; min-height:44px; }
+.payment-method-choices p { margin:14px 0 0; font-size:12px; color:var(--muted-foreground); }
+.purchase-payment-methods { border:0; padding:0; margin:0 0 20px; min-width:0; }
+.purchase-payment-methods legend { font-size:12px; margin-bottom:10px; }
+.purchase-payment-options { display:flex; gap:10px; }
+.purchase-payment-options button { display:flex; flex:1; align-items:center; justify-content:center; gap:9px; min-height:46px; padding:10px 14px; border:1px solid var(--border); border-radius:10px; background:var(--background); color:var(--foreground); font-size:13px; cursor:pointer; }
+.purchase-payment-options button[aria-pressed=true] { border-color:var(--primary); background:color-mix(in srgb,var(--primary) 6%,var(--background)); }
+.purchase-payment-options button:focus-visible { outline:2px solid var(--primary); outline-offset:2px; }
+.purchase-payment-methods:disabled button { opacity:.65; cursor:wait; }
+.purchase-payment-methods p { font-size:12px; color:var(--muted-foreground); }
+.purchase-email-form>p.purchase-submit-error { color:var(--destructive); font-size:12px; margin:0 0 14px; overflow-wrap:anywhere; }

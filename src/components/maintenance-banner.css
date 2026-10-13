@@ -1,0 +1,29 @@
+.maintenance-banner {
+  flex-shrink: 0;
+  border-bottom: 1px solid #efd98d;
+  background: #fff3c4;
+  color: #664b0b;
+}
+
+.maintenance-banner-inner {
+  width: min(1280px, calc(100% - 80px));
+  min-height: 44px;
+  margin-inline: auto;
+  padding-block: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.maintenance-banner-inner > svg { flex-shrink: 0; }
+.maintenance-banner p { margin: 0; font-size: 13px; line-height: 22px; overflow-wrap: anywhere; }
+.maintenance-banner strong { margin-right: 12px; font-weight: 600; white-space: nowrap; }
+.dark .maintenance-banner { background: #332a12; color: #f5d77a; border-color: #51421b; }
+
+@media (max-width: 760px) {
+  .maintenance-banner-inner { width: calc(100% - 40px); align-items: flex-start; gap: 8px; }
+  .maintenance-banner-inner > svg { margin-top: 3px; }
+  .maintenance-banner p { font-size: 12px; }
+  .maintenance-banner strong { margin-right: 8px; }
+}

@@ -1,0 +1,451 @@
+<style>
+#recharge-concept { --tb-bg:light-dark(#fafafa,#080808); --tb-paper:light-dark(#fff,#111); --tb-ink:light-dark(#1d1d1f,#ededed); --tb-muted:light-dark(#6e6e73,#939393); --tb-line:light-dark(#e5e5e8,#282828); --tb-action:var(--tb-ink); --tb-selected:light-dark(#f0f0f2,#202020); --tb-green:var(--tb-muted); --tb-green-bg:light-dark(#f3f3f5,#1a1a1a); --tb-glass:light-dark(rgb(247 247 248 / .9),rgb(18 18 18 / .94)); --tb-edge:light-dark(rgb(255 255 255 / .95),rgb(255 255 255 / .1)); --tb-shadow:light-dark(rgb(0 0 0 / .035),rgb(0 0 0 / .16)); --tb-radius:16px; color:var(--tb-ink); font:14px/1.5 'Geist Variable',-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif; }
+#recharge-concept * { box-sizing:border-box; }
+#recharge-concept [hidden] { display:none!important; }
+#recharge-concept button,#recharge-concept input,#recharge-concept select { font:inherit; }
+#recharge-concept button { color:inherit; }
+#recharge-concept button:focus-visible,#recharge-concept input:focus-visible,#recharge-concept select:focus-visible { outline:3px solid var(--tb-action); outline-offset:3px; }
+#recharge-concept .tb-app { position:relative; isolation:isolate; display:grid; grid-template-columns:196px minmax(0,1fr); gap:0; min-height:690px; padding:10px; border:1px solid var(--tb-line); border-radius:22px; background:var(--tb-bg); }
+#recharge-concept { --tb-glass:light-dark(rgb(255 255 255 / .36),rgb(36 36 36 / .76)); --tb-glass-rim:light-dark(rgb(255 255 255 / .96),rgb(255 255 255 / .075)); --tb-glass-shade:light-dark(rgb(0 0 0 / .12),rgb(0 0 0 / .22)); --tb-glass-glow:light-dark(rgb(255 255 255 / .7),rgb(255 255 255 / .025)); --tb-glass-blur:20px; }
+#recharge-concept .tb-app::before { content:''; position:absolute; pointer-events:none; top:10px; bottom:10px; left:10px; width:196px; border-radius:18px; background:linear-gradient(145deg,transparent 12%,light-dark(rgb(255 255 255 / .85),transparent) 28%,transparent 41%,light-dark(rgb(0 0 0 / .045),transparent) 68%,transparent 85%),radial-gradient(ellipse at 10% 48%,light-dark(#d7d7d7,#101010),light-dark(#eaeaea,#101010) 55%,var(--tb-bg) 85%); }
+#recharge-concept .tb-glass { position:relative; isolation:isolate; background:var(--tb-glass); backdrop-filter:blur(var(--tb-glass-blur)); -webkit-backdrop-filter:blur(var(--tb-glass-blur)); border:1px solid var(--tb-glass-rim); box-shadow:inset 0 1px 0 light-dark(rgb(255 255 255 / .7),rgb(255 255 255 / .035)),inset 0 -1px 0 light-dark(rgb(0 0 0 / .06),rgb(255 255 255 / .025)),0 5px 16px var(--tb-shadow),0 1px 2px var(--tb-glass-shade); }
+#recharge-concept .tb-glass::before { content:''; position:absolute; pointer-events:none; inset:0; z-index:-1; border-radius:inherit; background:linear-gradient(180deg,var(--tb-glass-glow),transparent 16px); }
+#recharge-concept .tb-glass::after { content:none; }
+#recharge-concept .tb-sidebar { border-radius:15px; padding:21px 10px 14px; display:flex; flex-direction:column; min-width:0; }
+#recharge-concept .tb-brand { display:flex; align-items:center; gap:10px; padding:0 9px; }
+#recharge-concept .tb-logomark { display:grid; place-items:center; width:33px; height:33px; border-radius:11px; background:var(--tb-ink); color:var(--tb-paper); font-size:20px; font-weight:600; }
+#recharge-concept .tb-brand strong { font-size:18px; letter-spacing:-.5px; }
+#recharge-concept .tb-brand small { display:block; color:var(--tb-muted); font-size:11px; letter-spacing:.3px; }
+#recharge-concept .tb-nav { display:grid; gap:5px; margin-top:34px; }
+#recharge-concept .tb-navlabel { font-size:11px; padding:0 13px 8px; color:var(--tb-muted); }
+#recharge-concept .tb-nav button { display:flex; align-items:center; gap:11px; padding:10px 13px; border:1px solid transparent; border-radius:9px; background:transparent; text-align:left; white-space:nowrap; font-size:13px; }
+#recharge-concept .tb-nav button:hover { background:var(--tb-bg); }
+#recharge-concept .tb-nav button[aria-current=page] { background:light-dark(rgb(255 255 255 / .7),rgb(255 255 255 / .065)); border-color:light-dark(rgb(255 255 255 / .96),rgb(255 255 255 / .035)); color:var(--tb-action); box-shadow:inset 0 1px 0 light-dark(rgb(255 255 255 / .7),rgb(255 255 255 / .015)),0 2px 6px var(--tb-shadow); font-weight:600; }
+#recharge-concept .tb-nav svg { flex:none; }
+#recharge-concept .tb-sidebar-bottom { margin-top:auto; padding:30px 10px 0; }
+#recharge-concept .tb-sidebar-bottom p { color:var(--tb-muted); font-size:11px; margin:0 0 14px; }
+#recharge-concept .tb-person { display:flex; align-items:center; gap:9px; border-top:1px solid var(--tb-line); padding-top:14px; }
+#recharge-concept .tb-avatar { width:32px; height:32px; display:grid; place-items:center; background:var(--tb-selected); color:var(--tb-action); border-radius:50%; font-size:12px; font-weight:600; }
+#recharge-concept .tb-person strong { font-size:12px; font-weight:500; }
+#recharge-concept .tb-person small { display:block; color:var(--tb-muted); font-size:11px; }
+#recharge-concept .tb-main { min-width:0; padding:8px 28px 12px; }
+#recharge-concept .tb-topline { display:flex; gap:10px; align-items:center; color:var(--tb-muted); font-size:11px; min-height:36px; padding-right:90px; }
+#recharge-concept .tb-topline>span { margin-right:auto; }
+#recharge-concept .tb-theme { display:inline-flex; align-items:center; gap:6px; border-radius:20px; color:var(--tb-ink); font-size:11px; min-height:32px; padding:6px 12px; }
+#recharge-concept .tb-head { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:25px 0 24px; }
+#recharge-concept h1 { font-size:29px; line-height:1.25; letter-spacing:-1px; font-weight:600; margin:0 0 7px; }
+#recharge-concept h2 { font-size:15px; font-weight:600; margin:0; }
+#recharge-concept h3 { font-size:16px; font-weight:600; margin:0 0 4px; }
+#recharge-concept p { margin:0; }
+#recharge-concept .tb-sub { color:var(--tb-muted); font-size:12px; }
+#recharge-concept .tb-button { display:inline-flex; justify-content:center; align-items:center; gap:7px; min-height:36px; padding:8px 13px; border:1px solid var(--tb-line); border-radius:11px; background:var(--tb-paper); font-size:12px; white-space:nowrap; transition:transform .16s,background .16s; }
+#recharge-concept .tb-button:hover { background:var(--tb-selected); }
+#recharge-concept .tb-button.tb-primary { background:var(--tb-ink); color:var(--tb-paper); border-color:transparent; box-shadow:none; }
+#recharge-concept .tb-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding:20px 0 24px; border-top:1px solid var(--tb-line); border-bottom:1px solid var(--tb-line); margin-bottom:25px; }
+#recharge-concept .tb-metric { padding-left:22px; border-left:1px solid var(--tb-line); }
+#recharge-concept .tb-metric:first-child { padding-left:0; border:0; }
+#recharge-concept .tb-metric span { color:var(--tb-muted); font-size:12px; }
+#recharge-concept .tb-metric strong { display:block; font-size:27px; line-height:1.4; font-weight:500; letter-spacing:-.8px; font-variant-numeric:tabular-nums; margin:7px 0 1px; }
+#recharge-concept .tb-metric small { font-size:11px; color:var(--tb-muted); }
+#recharge-concept .tb-sectionhead { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin:0 0 15px; }
+#recharge-concept .tb-sectionhead>span { color:var(--tb-muted); font-size:11px; }
+#recharge-concept .tb-shopgrid { display:grid; gap:0; border:1px solid var(--tb-line); border-radius:var(--tb-radius); background:var(--tb-paper); }
+#recharge-concept .tb-shop { display:grid; grid-template-columns:38px minmax(0,1fr) auto; align-items:center; gap:14px; padding:22px 20px; min-width:0; }
+#recharge-concept .tb-shop+.tb-shop { border-top:1px solid var(--tb-line); }
+#recharge-concept .tb-shopidentity { min-width:0; }
+#recharge-concept .tb-shopidentity h3 { font-size:14px; font-weight:500; }
+#recharge-concept .tb-shopidentity .tb-status { margin-left:7px; font-size:10px; vertical-align:middle; padding:1px 6px; }
+#recharge-concept .tb-shopicon { display:grid; place-items:center; width:38px; height:38px; border-radius:11px; background:var(--tb-selected); color:var(--tb-ink); }
+#recharge-concept .tb-status { display:inline-flex; align-items:center; gap:5px; padding:3px 8px; background:var(--tb-green-bg); color:var(--tb-green); border-radius:20px; font-size:11px; white-space:nowrap; }
+#recharge-concept .tb-status::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; }
+#recharge-concept .tb-shop .tb-sub { font-size:11px; overflow-wrap:anywhere; }
+#recharge-concept .tb-shopactions { display:flex; justify-content:flex-end; gap:6px; flex-wrap:wrap; }
+#recharge-concept .tb-shopactions [data-action=manage] { border-color:transparent; background:transparent; color:var(--tb-muted); }
+#recharge-concept .tb-shopactions .tb-button { font-size:11px; }
+#recharge-concept .tb-bottomnote { margin-top:20px; display:flex; align-items:center; gap:7px; font-size:11px; color:var(--tb-muted); }
+#recharge-concept .tb-surface { background:var(--tb-paper); border:1px solid var(--tb-line); border-radius:var(--tb-radius); padding:20px; }
+#recharge-concept .tb-orderfilters { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-bottom:18px; }
+#recharge-concept .tb-segments { display:flex; gap:3px; padding:4px; border-radius:30px; }
+#recharge-concept .tb-segments button { background:transparent; border:0; border-radius:24px; padding:7px 11px; color:var(--tb-muted); font-size:11px; }
+#recharge-concept .tb-segments button[aria-pressed=true] { background:light-dark(rgb(255 255 255 / .85),rgb(255 255 255 / .07)); color:var(--tb-ink); box-shadow:inset 0 1px 0 light-dark(rgb(255 255 255 / .7),rgb(255 255 255 / .025)),0 2px 6px var(--tb-shadow); }
+#recharge-concept .tb-search { display:flex; align-items:center; gap:7px; min-width:0; max-width:100%; color:var(--tb-muted); }
+#recharge-concept .tb-search input { width:135px; min-width:0; border:0; background:transparent; color:var(--tb-ink); padding:7px 0; font-size:12px; }
+#recharge-concept .tb-tablewrap { position:relative; overflow-x:auto; }
+#recharge-concept table { width:100%; border-collapse:collapse; font-size:12px; }
+#recharge-concept th { color:var(--tb-muted); font-size:11px; font-weight:400; padding:10px 8px; text-align:left; border-bottom:1px solid var(--tb-line); white-space:nowrap; }
+#recharge-concept td { padding:16px 8px; border-bottom:1px solid var(--tb-line); white-space:nowrap; }
+#recharge-concept td small { display:block; color:var(--tb-muted); font-size:10px; margin-top:4px; }
+#recharge-concept th:nth-child(3),#recharge-concept td:nth-child(3) { text-align:right; font-variant-numeric:tabular-nums; }
+#recharge-concept .tb-detailbutton { color:var(--tb-action); border:0; background:transparent; padding:8px 0; font-size:12px; }
+#recharge-concept .tb-pending { color:var(--tb-ink); background:var(--tb-selected); }
+#recharge-concept .tb-pending::before { background:transparent; border:1px solid currentColor; width:6px; height:6px; }
+#recharge-concept .tb-tablefoot { display:flex; justify-content:space-between; align-items:center; margin-top:15px; color:var(--tb-muted); font-size:11px; }
+#recharge-concept .tb-settings-form { display:grid; gap:19px; }
+#recharge-concept .tb-field { display:grid; gap:7px; color:var(--tb-muted); font-size:12px; }
+#recharge-concept .tb-field input,#recharge-concept .tb-field select { width:100%; min-height:41px; padding:10px 12px; border:1px solid var(--tb-line); border-radius:10px; background:var(--tb-bg); color:var(--tb-ink); font-size:13px; }
+#recharge-concept .tb-fieldrow { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+#recharge-concept .tb-settingrow { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:17px 0; border-top:1px solid var(--tb-line); }
+#recharge-concept .tb-settingrow strong { display:block; font-size:13px; font-weight:500; margin-bottom:4px; }
+#recharge-concept .tb-toggle { appearance:none; width:38px; height:23px; flex:none; border-radius:20px; padding:3px; background:var(--tb-muted); transition:background .2s; }
+#recharge-concept .tb-toggle::before { content:''; display:block; width:17px; height:17px; border-radius:50%; background:#fff; transition:transform .2s; }
+#recharge-concept .tb-toggle:checked { background:var(--tb-action); }
+#recharge-concept .tb-toggle:checked::before { transform:translateX(15px); }
+#recharge-concept .tb-settingactions { display:flex; justify-content:flex-end; }
+#recharge-concept .tb-notice { min-height:25px; margin-top:14px; color:var(--tb-green); font-size:12px; }
+#recharge-concept .tb-overlay { position:absolute; inset:0; z-index:5; display:flex; align-items:flex-start; justify-content:flex-end; padding:65px 20px 20px; background:light-dark(rgb(0 0 0 / .12),rgb(0 0 0 / .5)); backdrop-filter:blur(4px); border-radius:22px; }
+#recharge-concept .tb-sheet { width:365px; max-width:100%; padding:25px; border-radius:25px; background:var(--tb-paper); border:1px solid var(--tb-edge); box-shadow:0 24px 80px var(--tb-shadow); }
+#recharge-concept .tb-sheethead { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:23px; }
+#recharge-concept .tb-sheetbody { display:grid; gap:17px; }
+#recharge-concept .tb-sheetbody dl { margin:0; }
+#recharge-concept .tb-sheetbody dl div { display:flex; justify-content:space-between; gap:12px; padding:13px 0; border-bottom:1px solid var(--tb-line); font-size:12px; }
+#recharge-concept .tb-sheetbody dt { color:var(--tb-muted); }
+#recharge-concept .tb-sheetbody dd { margin:0; }
+#recharge-concept .tb-amount { font-size:36px; font-weight:500; letter-spacing:-1px; margin:3px 0 15px; }
+#recharge-concept .tb-priceitem { display:grid; gap:8px; padding:15px 0; border-bottom:1px solid var(--tb-line); }
+#recharge-concept .tb-priceitem strong { font-size:14px; font-weight:500; }
+#recharge-concept .tb-priceitem .tb-field { grid-template-columns:1fr 120px; align-items:center; }
+#recharge-concept .tb-priceitem small { color:var(--tb-muted); font-size:11px; }
+#recharge-concept .tb-quickorders { margin-top:28px; }
+#recharge-concept .tb-quickrow { display:flex; align-items:center; flex-wrap:wrap; gap:12px; padding:15px 0; border-bottom:1px solid var(--tb-line); font-size:12px; }
+#recharge-concept .tb-quickrow>span:first-child { flex:1; min-width:110px; }
+#recharge-concept .tb-quickrow small { display:block; color:var(--tb-muted); font-size:11px; margin-top:3px; }
+#recharge-concept .tb-quickrow>strong { font-weight:500; font-variant-numeric:tabular-nums; }
+@media(max-width:900px) { #recharge-concept .tb-shop { grid-template-columns:38px minmax(0,1fr); } #recharge-concept .tb-shopactions { grid-column:1/-1; justify-content:flex-start; } }
+@media(max-width:760px) { #recharge-concept .tb-app { grid-template-columns:155px minmax(0,1fr); padding:8px; gap:4px; } #recharge-concept .tb-main { padding:8px 12px; } #recharge-concept .tb-metric { padding-left:12px; } #recharge-concept .tb-metric strong { font-size:22px; } #recharge-concept .tb-sidebar { padding:20px 5px; } #recharge-concept .tb-nav button { padding:12px 9px; } }
+@media(max-width:540px) { #recharge-concept .tb-app { display:flex; flex-direction:column; min-height:735px; border-radius:20px; } #recharge-concept .tb-sidebar { padding:12px; border-radius:17px; } #recharge-concept .tb-brand { padding-right:80px; } #recharge-concept .tb-brand small { display:none; } #recharge-concept .tb-nav { display:flex; flex-wrap:wrap; gap:3px; margin-top:15px; } #recharge-concept .tb-navlabel,#recharge-concept .tb-sidebar-bottom { display:none; } #recharge-concept .tb-nav button { flex:1; justify-content:center; font-size:12px; gap:6px; padding:10px 8px; } #recharge-concept .tb-main { padding:8px 6px; } #recharge-concept .tb-topline { padding:0; } #recharge-concept h1 { font-size:25px; } #recharge-concept .tb-metric strong { font-size:21px; } #recharge-concept .tb-metric span { font-size:11px; } #recharge-concept .tb-metric small { font-size:10px; } #recharge-concept .tb-fieldrow { grid-template-columns:1fr; } #recharge-concept .tb-surface { padding:14px; } #recharge-concept .tb-overlay { padding:100px 10px 15px; } }
+@media(max-width:540px) { #recharge-concept .tb-nav { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:12px; } #recharge-concept .tb-nav button { flex-direction:column; gap:5px; padding:8px 4px; font-size:11px; } #recharge-concept .tb-metric small { display:none; } #recharge-concept .tb-quickrow { display:grid; grid-template-columns:1fr auto; gap:8px; } #recharge-concept .tb-quickrow .tb-status { justify-self:end; } #recharge-concept .tb-quickrow .tb-detailbutton { text-align:right; } }
+@media(pointer:coarse) { #recharge-concept button { min-height:44px; } #recharge-concept input:not([type=checkbox]),#recharge-concept select { font-size:16px!important; } }
+@media(max-width:760px) { #recharge-concept .tb-app::before { top:8px; bottom:8px; left:8px; width:155px; } }
+@media(max-width:540px) { #recharge-concept .tb-app::before { width:auto; right:8px; bottom:auto; height:140px; background:linear-gradient(120deg,light-dark(#e1e1e1,#101010),light-dark(#f5f5f5,#101010) 45%,light-dark(#dedede,#101010)); } }
+@media(prefers-reduced-motion:reduce) { #recharge-concept *,#recharge-concept *::before { transition:none!important; } }
+#recharge-concept .tb-app[data-solid=true] .tb-glass { background:var(--tb-paper); backdrop-filter:none; -webkit-backdrop-filter:none; border-color:var(--tb-line); box-shadow:none; }
+#recharge-concept .tb-app[data-solid=true]::before,#recharge-concept .tb-app[data-solid=true] .tb-glass::before,#recharge-concept .tb-app[data-solid=true] .tb-glass::after { display:none; }
+#recharge-concept .tb-app[data-solid=true] .tb-nav button[aria-current=page],#recharge-concept .tb-app[data-solid=true] .tb-segments button[aria-pressed=true] { background:var(--tb-selected); border-color:var(--tb-line); box-shadow:none; }
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more) { #recharge-concept .tb-glass { background:var(--tb-paper); backdrop-filter:none!important; -webkit-backdrop-filter:none!important; border-color:var(--tb-muted); box-shadow:none; } #recharge-concept .tb-app::before,#recharge-concept .tb-glass::before,#recharge-concept .tb-glass::after { display:none; } #recharge-concept .tb-nav button[aria-current=page],#recharge-concept .tb-segments button[aria-pressed=true] { background:var(--tb-selected); border-color:var(--tb-line); box-shadow:none; } }
+@supports not (backdrop-filter:blur(1px)) { #recharge-concept .tb-glass { background:var(--tb-paper); } #recharge-concept .tb-app::before,#recharge-concept .tb-glass::before,#recharge-concept .tb-glass::after { display:none; } }
+#recharge-concept { --tb-ease:cubic-bezier(.22,1,.36,1); }
+#recharge-concept .tb-main { min-height:740px; }
+#recharge-concept .tb-tabs { display:flex; position:relative; align-items:center; gap:18px; border-bottom:1px solid var(--tb-line); margin:0 0 24px; padding:0; }
+#recharge-concept .tb-tabs button { position:relative; flex:none; min-height:42px; padding:9px 2px 13px; font-size:12px; border:0; background:transparent; color:var(--tb-muted); white-space:nowrap; }
+#recharge-concept .tb-tabs button[aria-selected=true] { color:var(--tb-ink); font-weight:500; }
+#recharge-concept .tb-tab-indicator { position:absolute; left:0; bottom:-1px; height:2px; border-radius:2px; background:var(--tb-ink); pointer-events:none; transition:transform 240ms var(--tb-ease),width 240ms var(--tb-ease); }
+#recharge-concept [role=tabpanel] { min-width:0; }
+#recharge-concept .tb-panel-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+#recharge-concept .tb-panel-heading p { margin-top:4px; }
+#recharge-concept .tb-storepick { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--tb-muted); }
+#recharge-concept .tb-storepick select { max-width:190px; min-width:0; padding:8px 28px 8px 10px; background:var(--tb-paper); color:var(--tb-ink); border:1px solid var(--tb-line); border-radius:9px; font-size:12px; }
+#recharge-concept .tb-pricegrid { display:grid; gap:0; }
+#recharge-concept .tb-pricegrid .tb-priceitem { grid-template-columns:minmax(0,1fr) 130px; padding:20px 0; gap:5px 20px; align-items:center; }
+#recharge-concept .tb-pricegrid .tb-priceitem .tb-field { grid-column:2; grid-row:1/3; display:grid; grid-template-columns:1fr; }
+#recharge-concept .tb-pricegrid .tb-priceitem small { grid-column:1; grid-row:2; }
+#recharge-concept .tb-savebar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:20px; min-height:38px; }
+#recharge-concept .tb-savebar small { color:var(--tb-muted); font-size:11px; }
+#recharge-concept .tb-resource-list { display:grid; border:1px solid var(--tb-line); border-radius:var(--tb-radius); background:var(--tb-paper); }
+#recharge-concept .tb-resource-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:20px; }
+#recharge-concept .tb-resource-row+.tb-resource-row { border-top:1px solid var(--tb-line); }
+#recharge-concept .tb-resource-row>div:first-child { flex:1; min-width:120px; }
+#recharge-concept .tb-resource-row strong { font-size:13px; font-weight:500; overflow-wrap:anywhere; }
+#recharge-concept .tb-resource-row small { display:block; font-size:11px; margin-top:4px; color:var(--tb-muted); }
+#recharge-concept .tb-settingrow input[type=checkbox] { margin:0; }
+#recharge-concept .tb-choice { display:flex; gap:6px; }
+#recharge-concept .tb-choice button[aria-pressed=true] { background:var(--tb-selected); border-color:var(--tb-muted); }
+#recharge-concept button,#recharge-concept input,#recharge-concept select { transition:background-color 160ms ease,color 160ms ease,border-color 160ms ease,box-shadow 160ms ease,transform 160ms var(--tb-ease),opacity 160ms ease; }
+#recharge-concept .tb-app,#recharge-concept .tb-surface,#recharge-concept .tb-shopgrid,#recharge-concept .tb-glass,#recharge-concept .tb-sheet { transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease,box-shadow 200ms ease; }
+#recharge-concept button:active:not(:disabled) { transform:scale(.97); }
+#recharge-concept button:disabled { opacity:.42; cursor:not-allowed; }
+#recharge-concept .tb-shop,#recharge-concept .tb-resource-row,#recharge-concept tbody tr,#recharge-concept .tb-quickrow { transition:background-color 160ms ease; }
+#recharge-concept .tb-shop:hover,#recharge-concept .tb-resource-row:hover,#recharge-concept tbody tr:hover,#recharge-concept .tb-quickrow:hover { background:light-dark(rgb(0 0 0 / .018),rgb(255 255 255 / .02)); }
+#recharge-concept .tb-notice:empty { min-height:0; margin:0; }
+#recharge-concept .tb-notice:not(:empty) { padding:10px 12px; border:1px solid var(--tb-line); border-radius:10px; background:var(--tb-paper); }
+#recharge-concept .tb-notice { overflow-wrap:anywhere; }
+#recharge-concept .tb-sheet { transform-origin:100% 20%; }
+#recharge-concept [data-view=stores] [role=tabpanel]>.tb-metrics { border-top:0; padding-top:0; }
+@media(max-width:540px) { #recharge-concept .tb-tabs { gap:14px; margin-bottom:20px; } #recharge-concept .tb-tabs button { font-size:11px; } #recharge-concept .tb-main { min-height:700px; } #recharge-concept .tb-pricegrid .tb-priceitem { grid-template-columns:minmax(0,1fr) 100px; gap:5px 10px; } #recharge-concept .tb-pricegrid .tb-priceitem .tb-field input { padding:9px; } #recharge-concept .tb-settingrow { flex-wrap:wrap; gap:12px; } #recharge-concept .tb-savebar { flex-wrap:wrap; } }
+@media(prefers-reduced-motion:reduce) { #recharge-concept *,#recharge-concept *::before,#recharge-concept *::after { transition:none!important; animation:none!important; } }
+#recharge-concept[data-motion=off] *,#recharge-concept[data-motion=off] *::before,#recharge-concept[data-motion=off] *::after { transition:none!important; animation:none!important; }
+</style>
+<div id="recharge-concept">
+  <div aria-label="黑白代理工作台">
+    <section aria-label="侧栏工作台">
+      <div class="tb-app">
+        <aside class="tb-sidebar tb-glass">
+          <div class="tb-brand"><div class="tb-logomark">t</div><div><strong>GPTibo</strong><small>代理工作台</small></div></div>
+          <nav class="tb-nav" aria-label="工作台导航">
+            <div class="tb-navlabel">经营工作台</div>
+            <button type="button" class="cursor-interaction" data-page="stores" aria-current="page"><i data-lucide="store" aria-hidden="true"></i>我的商店</button>
+            <button type="button" class="cursor-interaction" data-page="orders"><i data-lucide="receipt-text" aria-hidden="true"></i>订单收益</button>
+            <button type="button" class="cursor-interaction" data-page="settings"><i data-lucide="settings-2" aria-hidden="true"></i>账号设置</button>
+          </nav>
+          <div class="tb-sidebar-bottom"><div class="tb-person"><div class="tb-avatar">林</div><div><strong>林间数字商店</strong><small>代理账号</small></div></div></div>
+        </aside>
+        <main class="tb-main">
+          <div class="tb-topline"><span>工作台 / 示例数据</span><button type="button" class="tb-theme tb-glass cursor-interaction" data-action="theme" aria-label="切换深浅色外观"><i data-lucide="sun-moon" aria-hidden="true"></i>外观</button></div>
+          <section data-view="stores" aria-label="我的商店">
+            <header class="tb-head"><div><h1>我的商店</h1><p class="tb-sub">管理商品、价格与推广链接</p></div><button class="tb-button tb-primary cursor-interaction" type="button" data-action="new"><i data-lucide="plus" aria-hidden="true"></i>新建商店</button></header>
+            <div class="tb-metrics"><div class="tb-metric"><span>营业中的商店</span><strong data-store-count>2</strong><small>独立经营，统一管理</small></div><div class="tb-metric"><span>累计完成订单</span><strong>128</strong><small>来自全部商店</small></div><div class="tb-metric"><span>累计确认收益</span><strong>¥2,480</strong><small>已扣除退款影响</small></div></div>
+            <div class="tb-sectionhead"><h2>全部商店</h2><span>营业中</span></div>
+            <div class="tb-shopgrid">
+              <article class="tb-shop"><div class="tb-shopicon"><i data-lucide="store" aria-hidden="true"></i></div><div class="tb-shopidentity"><h3><span data-shop-name>林间数字商店</span><span class="tb-status">默认</span></h3><p class="tb-sub">linjian.example.com</p></div><div class="tb-shopactions"><button class="tb-button cursor-interaction" type="button" data-action="pricing">改价</button><button class="tb-button cursor-interaction" type="button" data-action="link"><i data-lucide="copy" aria-hidden="true"></i>复制链接</button><button class="tb-button cursor-interaction" type="button" data-action="manage">设置</button></div></article>
+              <article class="tb-shop"><div class="tb-shopicon"><i data-lucide="store" aria-hidden="true"></i></div><div class="tb-shopidentity"><h3><span data-shop-name>灵感补给站</span></h3><p class="tb-sub">studio.example.com</p></div><div class="tb-shopactions"><button class="tb-button cursor-interaction" type="button" data-action="pricing">改价</button><button class="tb-button cursor-interaction" type="button" data-action="link"><i data-lucide="copy" aria-hidden="true"></i>复制链接</button><button class="tb-button cursor-interaction" type="button" data-action="manage">设置</button></div></article>
+            </div>
+            <section class="tb-quickorders" aria-label="最近订单"><div class="tb-sectionhead"><h2>最近订单</h2><button type="button" class="tb-detailbutton cursor-interaction" data-page="orders">全部订单 →</button></div><div class="tb-quickrow"><span>ChatGPT Plus<small>TB1028 · 今天 14:32</small></span><span class="tb-status">已完成</span><strong>+ ¥20.00</strong><button class="tb-detailbutton cursor-interaction" type="button" data-action="quick-detail" data-order-id="TB1028">详情</button></div><div class="tb-quickrow"><span>X Premium<small>TB1027 · 今天 13:10</small></span><span class="tb-status tb-pending">处理中</span><strong>收益待确认</strong><button class="tb-detailbutton cursor-interaction" type="button" data-action="quick-detail" data-order-id="TB1027">详情</button></div></section>
+          </section>
+          <section data-view="orders" aria-label="订单收益" hidden>
+            <header class="tb-head"><div><h1>订单收益</h1><p class="tb-sub">查看订单进度与可结算收益</p></div><button class="tb-button tb-primary cursor-interaction" type="button" data-action="payout"><i data-lucide="wallet" aria-hidden="true"></i>申请提现</button></header>
+            <div class="tb-metrics"><div class="tb-metric"><span>可提现金额</span><strong>¥680</strong><small>已完成且可结算的收益</small></div><div class="tb-metric"><span>提现处理中</span><strong>¥300</strong><small>等待平台审核</small></div><div class="tb-metric"><span>已结算收益</span><strong>¥1,500</strong><small>已到账的收益</small></div></div>
+            <div class="tb-surface"><div class="tb-orderfilters"><div class="tb-segments tb-glass" role="group" aria-label="订单状态"><button class="cursor-interaction" type="button" data-filter="all" aria-pressed="true">全部订单</button><button class="cursor-interaction" type="button" data-filter="done" aria-pressed="false">已完成</button><button class="cursor-interaction" type="button" data-filter="pending" aria-pressed="false">处理中</button></div><label class="tb-search"><i data-lucide="search" aria-hidden="true"></i><input type="search" placeholder="搜索订单或商品" aria-label="搜索订单或商品"></label></div>
+            <div class="tb-tablewrap"><table><thead><tr><th scope="col">订单 / 商品</th><th scope="col">状态</th><th scope="col">收益</th><th scope="col"><span class="sr-only">操作</span></th></tr></thead><tbody>
+              <tr data-status="done" data-order="TB1028"><td>ChatGPT Plus<small>TB1028 · 10/12 14:32</small></td><td><span class="tb-status">已完成</span></td><td>¥20.00</td><td><button class="tb-detailbutton cursor-interaction" type="button" data-action="detail" aria-label="查看订单 TB1028 详情">详情</button></td></tr>
+              <tr data-status="pending" data-order="TB1027"><td>X Premium<small>TB1027 · 10/12 13:10</small></td><td><span class="tb-status tb-pending">处理中</span></td><td>待确认</td><td><button class="tb-detailbutton cursor-interaction" type="button" data-action="detail" aria-label="查看订单 TB1027 详情">详情</button></td></tr>
+              <tr data-status="done" data-order="TB1026"><td>ChatGPT Plus<small>TB1026 · 10/12 11:46</small></td><td><span class="tb-status">已完成</span></td><td>¥20.00</td><td><button class="tb-detailbutton cursor-interaction" type="button" data-action="detail" aria-label="查看订单 TB1026 详情">详情</button></td></tr>
+              <tr data-status="done" data-order="TB1025"><td>X Premium<small>TB1025 · 10/11 17:28</small></td><td><span class="tb-status">已完成</span></td><td>¥30.00</td><td><button class="tb-detailbutton cursor-interaction" type="button" data-action="detail" aria-label="查看订单 TB1025 详情">详情</button></td></tr>
+            </tbody></table></div><p class="tb-sub" data-empty hidden>没有符合条件的订单</p><div class="tb-tablefoot"><span data-result-count aria-live="polite">4 笔示例订单</span><span>金额单位：人民币</span></div></div>
+          </section>
+          <section data-view="settings" aria-label="账号设置" hidden>
+            <header class="tb-head"><div><h1>账号设置</h1><p class="tb-sub">个人资料、通知与显示偏好</p></div></header>
+            <form class="tb-settings-form tb-surface"><div class="tb-sectionhead"><h2>个人资料</h2><span>代理账号</span></div><div class="tb-fieldrow"><label class="tb-field">显示名称<input name="displayName" value="林间数字商店" required maxlength="30"></label><label class="tb-field">通知邮箱<input name="email" type="email" value="hello@example.com" required></label></div><label class="tb-settingrow"><span><strong>订单邮件通知</strong><span class="tb-sub">订单完成时，发送一封邮件给你。</span></span><input class="tb-toggle cursor-interaction" type="checkbox" name="notification" checked aria-label="订单邮件通知"></label><label class="tb-settingrow"><span><strong>减少透明效果</strong><span class="tb-sub">使用更实的背景，让文字更清楚。</span></span><input class="tb-toggle cursor-interaction" type="checkbox" name="solid" aria-label="减少透明效果"></label><div class="tb-settingactions"><button type="button" data-local-submit class="tb-button tb-primary cursor-interaction">保存更改</button></div></form>
+          </section>
+          <div class="tb-notice" role="status" aria-live="polite"></div>
+        </main>
+        <div class="tb-overlay" hidden><section class="tb-sheet" role="dialog" aria-modal="true" aria-label="工作台操作"><header class="tb-sheethead"><h2 data-sheet-title>商店设置</h2><button class="tb-button cursor-interaction" type="button" data-action="close" aria-label="关闭面板"><i data-lucide="x" aria-hidden="true"></i></button></header><div class="tb-sheetbody"></div></section></div>
+      </div>
+    </section>
+  </div>
+</div>
+<template id="tb-store-panels">
+  <section data-tab-panel="products" hidden>
+    <div class="tb-panel-heading"><div><h2>商品定价</h2><p class="tb-sub">调整售价，直接查看预计差价</p></div><label class="tb-storepick">商店<select data-store-select aria-label="选择定价商店"></select></label></div>
+    <form class="tb-surface" data-price-form>
+      <div class="tb-pricegrid">
+        <div class="tb-priceitem"><strong>ChatGPT Plus</strong><label class="tb-field">售价（元）<input type="number" name="plus" min="0" step="0.01" value="168" required data-cost="148"></label><small>供货 ¥148.00 · 预计差价 <output data-margin="plus">¥20.00</output></small></div>
+        <div class="tb-priceitem"><strong>X Premium</strong><label class="tb-field">售价（元）<input type="number" name="premium" min="0" step="0.01" value="198" required data-cost="168"></label><small>供货 ¥168.00 · 预计差价 <output data-margin="premium">¥30.00</output></small></div>
+      </div>
+      <div class="tb-savebar"><small data-price-status>价格已保存</small><button class="tb-button tb-primary cursor-interaction" type="button" data-local-submit disabled>保存价格</button></div>
+    </form>
+  </section>
+  <section data-tab-panel="coupons" hidden>
+    <div class="tb-panel-heading"><div><h2>优惠券</h2><p class="tb-sub">查看使用情况，随时启用或暂停</p></div><button class="tb-button tb-primary cursor-interaction" type="button" data-action="new-coupon"><i data-lucide="plus" aria-hidden="true"></i>新建优惠券</button></div>
+    <div class="tb-resource-list" data-coupon-list><article class="tb-resource-row"><div><strong>WELCOME10</strong><small>立减 ¥10 · 林间数字商店 · 已用 6 / 100 次</small></div><span class="tb-status" data-coupon-status>使用中</span><button type="button" class="tb-button cursor-interaction" data-action="toggle-coupon" aria-label="启用优惠券 WELCOME10" aria-pressed="true">暂停</button></article></div>
+  </section>
+  <section data-tab-panel="domains" hidden>
+    <div class="tb-panel-heading"><div><h2>域名</h2><p class="tb-sub">独立域名与商店一一对应</p></div><button class="tb-button tb-primary cursor-interaction" type="button" data-action="new-domain"><i data-lucide="plus" aria-hidden="true"></i>添加域名</button></div>
+    <div class="tb-resource-list" data-domain-list><article class="tb-resource-row"><div><strong>linjian.example.com</strong><small>林间数字商店 · 默认域名</small></div><span class="tb-status">已连接</span><button type="button" class="tb-button cursor-interaction" data-action="domain-info">连接详情</button></article><article class="tb-resource-row"><div><strong>studio.example.com</strong><small>灵感补给站 · 独立域名</small></div><span class="tb-status">已连接</span><button type="button" class="tb-button cursor-interaction" data-action="domain-info">连接详情</button></article></div>
+  </section>
+</template>
+<template id="tb-payout-panel">
+  <section data-tab-panel="history" hidden><div class="tb-panel-heading"><div><h2>提现记录</h2><p class="tb-sub">申请进度与到账记录</p></div></div><div class="tb-resource-list"><article class="tb-resource-row"><div><strong>¥300.00</strong><small>2026/10/11 · 收款账户尾号 0188</small></div><span class="tb-status tb-pending">审核中</span></article><article class="tb-resource-row"><div><strong>¥1,500.00</strong><small>2026/10/08 · 收款账户尾号 0188</small></div><span class="tb-status">已到账</span></article></div></section>
+</template>
+<script>
+(() => {
+  const root = document.getElementById('recharge-concept');
+  const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const icons = () => { if (globalThis.lucide) lucide.createIcons({ attrs: { width:16,height:16 } }); };
+  const remembered = window.openai?.widgetState?.privateContent;
+  const states = {};
+  root.querySelectorAll('.tb-app').forEach((app,index) => {
+    const state = states[index] = { page:'stores',filter:'all',solid:false,theme:'system',motion:true,tabs:{stores:'overview',orders:'list',settings:'profile'} };
+    const motionQuery=matchMedia('(prefers-reduced-motion:reduce)');
+    const moving=()=>state.motion&&!motionQuery.matches;
+    const animate=(element,keyframes,duration=220)=>{
+      if(!element||!moving())return null;
+      element.getAnimations().forEach(animation=>animation.cancel());
+      return element.animate(keyframes,{duration,easing:'cubic-bezier(.22,1,.36,1)'});
+    };
+    const enter=element=>animate(element,[{opacity:.4,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}]);
+    const makePanel=(view,key,nodes)=>{const panel=document.createElement('section');panel.dataset.tabPanel=key;nodes.forEach(node=>panel.append(node));view.append(panel);return panel;};
+    const storesView=app.querySelector('[data-view=stores]');
+    makePanel(storesView,'overview',[...storesView.children].filter(el=>!el.matches('header')));
+    storesView.append(document.getElementById('tb-store-panels').content.cloneNode(true));
+    const ordersView=app.querySelector('[data-view=orders]');
+    makePanel(ordersView,'list',[...ordersView.children].filter(el=>!el.matches('header')));
+    ordersView.append(document.getElementById('tb-payout-panel').content.cloneNode(true));
+    const settingsView=app.querySelector('[data-view=settings]');
+    const settingsForm=settingsView.querySelector('form');
+    const profile=makePanel(settingsForm,'profile',[...settingsForm.children].slice(0,2));
+    const notification=makePanel(settingsForm,'notifications',[settingsForm.querySelector('[name=notification]').closest('label')]);
+    const appearance=makePanel(settingsForm,'appearance',[settingsForm.querySelector('[name=solid]').closest('label')]);
+    appearance.insertAdjacentHTML('afterbegin','<div class="tb-settingrow"><span><strong>外观</strong><span class="tb-sub">沿用主站的黑白配色</span></span><div class="tb-choice" role="group" aria-label="外观模式"><button type="button" class="tb-button cursor-interaction" data-theme="system">自动</button><button type="button" class="tb-button cursor-interaction" data-theme="light">浅色</button><button type="button" class="tb-button cursor-interaction" data-theme="dark">深色</button></div></div>');
+    appearance.insertAdjacentHTML('beforeend','<label class="tb-settingrow"><span><strong>界面动效</strong><span class="tb-sub">平滑切换与操作反馈，自动尊重系统减少动态效果设置</span></span><input type="checkbox" class="tb-toggle cursor-interaction" name="motion" checked aria-label="界面动效"></label>');
+    settingsForm.append(settingsForm.querySelector('.tb-settingactions'));
+    notification.hidden=true;appearance.hidden=true;profile.hidden=false;
+    const tabDefinitions={stores:[['overview','概览'],['products','商品定价'],['coupons','优惠券'],['domains','域名']],orders:[['list','订单明细'],['history','提现记录']],settings:[['profile','个人资料'],['notifications','通知'],['appearance','外观']]};
+    Object.entries(tabDefinitions).forEach(([page,definitions])=>{
+      const view=app.querySelector('[data-view="'+page+'"]');
+      const list=document.createElement('div');list.className='tb-tabs';list.setAttribute('role','tablist');list.setAttribute('aria-label',view.getAttribute('aria-label')+'功能');
+      list.innerHTML=definitions.map(([key,label],i)=>`<button type="button" role="tab" class="cursor-interaction" id="tb-${page}-${key}-tab" aria-controls="tb-${page}-${key}-panel" aria-selected="${i===0}" data-tab="${key}" data-tab-page="${page}">${label}</button>`).join('')+'<span class="tb-tab-indicator" aria-hidden="true"></span>';
+      view.querySelector('header').after(list);
+      definitions.forEach(([key])=>{const panel=view.querySelector('[data-tab-panel="'+key+'"]');panel.id=`tb-${page}-${key}-panel`;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',`tb-${page}-${key}-tab`);});
+    });
+    const positionIndicator=list=>{
+      const selected=list.querySelector('[aria-selected=true]');if(!selected||list.offsetWidth===0)return;
+      const indicator=list.querySelector('.tb-tab-indicator');indicator.style.width=selected.offsetWidth+'px';indicator.style.transform=`translateX(${selected.offsetLeft}px)`;
+    };
+    const selectTab=(page,key,animated=true)=>{
+      if(!tabDefinitions[page]?.some(([id])=>id===key))return;
+      const changed=state.tabs[page]!==key;state.tabs[page]=key;
+      const view=app.querySelector('[data-view="'+page+'"]');
+      view.querySelectorAll('[data-tab]').forEach(tab=>tab.setAttribute('aria-selected',String(tab.dataset.tab===key)));
+      view.querySelectorAll('[data-tab-panel]').forEach(panel=>{panel.hidden=panel.dataset.tabPanel!==key;if(!panel.hidden&&animated&&changed)enter(panel);});
+      positionIndicator(view.querySelector('.tb-tabs'));
+    };
+    const sizeObserver=new ResizeObserver(()=>app.querySelectorAll('.tb-tabs').forEach(positionIndicator));sizeObserver.observe(app);
+    const overlay = app.querySelector('.tb-overlay');
+    const body = app.querySelector('.tb-sheetbody');
+    const notice = app.querySelector('.tb-notice');
+    const settings = app.querySelector('.tb-settings-form');
+    let opener = null;
+    const bindForm = (form, handler) => {
+      const save = event => { event.preventDefault(); if(form.reportValidity()) handler(event); };
+      form.addEventListener('submit',save);
+      form.querySelector('[data-local-submit]').addEventListener('click',save);
+      form.addEventListener('keydown',event=>{if(event.key==='Enter' && event.target.tagName==='INPUT' && event.target.type!=='checkbox') save(event);});
+    };
+    const persist = () => window.openai?.setWidgetState?.({modelContent:{layout:'侧栏 + 页面横向 Tab',page:state.page,tab:state.tabs[state.page],theme:state.theme,reducedTransparency:state.solid,motion:state.motion},privateContent:states})?.catch(() => {});
+    const setTheme = theme => {
+      state.theme=theme;
+      root.style.colorScheme=theme==='system'?'':theme;
+      const dark=theme==='dark'||(theme==='system'&&matchMedia('(prefers-color-scheme:dark)').matches);
+      app.querySelector('[data-action=theme]').setAttribute('aria-label',dark?'切换浅色外观':'切换深色外观');
+      app.querySelector('[data-action=theme]').innerHTML=`<i data-lucide="${dark?'sun':'moon'}" aria-hidden="true"></i>${dark?'浅色':'深色'}`;
+      app.querySelectorAll('[data-theme]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.theme===theme)));
+      icons();
+    };
+    const setSolid = value => { state.solid=value; app.dataset.solid=String(value); settings.elements.solid.checked=value; };
+    const setPage = page => {
+      const changed=state.page!==page;
+      state.page=page;
+      app.querySelectorAll('[data-view]').forEach(el => { el.hidden=el.dataset.view!==page; });
+      app.querySelectorAll('.tb-nav [data-page]').forEach(el => { if(el.dataset.page===page) el.setAttribute('aria-current','page'); else el.removeAttribute('aria-current'); });
+      notice.textContent='';
+      selectTab(page,state.tabs[page],false);
+      if(changed)enter(app.querySelector('[data-view="'+page+'"]'));
+    };
+    const filterRows = () => {
+      const query=app.querySelector('input[type=search]').value.trim().toLowerCase();
+      let visible=0;
+      app.querySelectorAll('tbody tr').forEach(row => { row.hidden=!(state.filter==='all'||row.dataset.status===state.filter)||!row.textContent.toLowerCase().includes(query); if(!row.hidden) visible++; });
+      app.querySelector('[data-result-count]').textContent=visible+' 笔示例订单';
+      app.querySelector('[data-empty]').hidden=visible!==0;
+      enter(app.querySelector('tbody'));
+    };
+    let closeVersion=0;
+    const close = () => {
+      const version=++closeVersion;
+      const animation=animate(overlay.querySelector('.tb-sheet'),[{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(12px)'}],150);
+      const finish=()=>{if(version!==closeVersion)return;overlay.hidden=true;app.querySelector('.tb-main').inert=false;app.querySelector('.tb-sidebar').inert=false;opener?.focus();};
+      if(animation)animation.finished.then(finish,()=>{});else finish();
+    };
+    const show = (title,html,trigger) => {
+      opener=trigger;
+      closeVersion++;
+      app.querySelector('[data-sheet-title]').textContent=title;
+      overlay.querySelector('[role=dialog]').setAttribute('aria-label',title);
+      body.innerHTML=html; overlay.hidden=false;
+      app.querySelector('.tb-main').inert=true; app.querySelector('.tb-sidebar').inert=true;
+      icons(); overlay.querySelector('button').focus();
+      animate(overlay,[{opacity:0},{opacity:1}],160);
+      animate(overlay.querySelector('.tb-sheet'),[{opacity:.3,transform:'translateX(18px) scale(.985)'},{opacity:1,transform:'translateX(0) scale(1)'}],260);
+    };
+    const restore = saved => {
+      if(!saved) { setTheme('system'); return; }
+      if(['stores','orders','settings'].includes(saved.page)&&saved.page!==state.page) setPage(saved.page);
+      if(saved.tabs)Object.keys(tabDefinitions).forEach(page=>{if(saved.tabs[page])selectTab(page,saved.tabs[page],false);});
+      state.motion=saved.motion!==false;root.dataset.motion=state.motion?'on':'off';settings.elements.motion.checked=state.motion;
+      setSolid(Boolean(saved.solid));
+      setTheme(['light','dark'].includes(saved.theme)?saved.theme:'system');
+      if(['all','done','pending'].includes(saved.filter)) { state.filter=saved.filter; app.querySelectorAll('[data-filter]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.filter===state.filter))); filterRows(); }
+    };
+    restore(remembered?.[index]);
+    window.addEventListener('openai:set_globals',event=>{const saved=event.detail?.globals?.widgetState?.privateContent?.[index];if(saved)restore(saved);});
+    matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(state.theme==='system')setTheme('system');});
+    const prices=new WeakMap();
+    const priceDrafts=new WeakMap();
+    const priceForm=app.querySelector('[data-price-form]');
+    const shopSelect=app.querySelector('[data-store-select]');
+    let activeShop=app.querySelector('.tb-shop');
+    const updateShops=()=>{const shops=[...app.querySelectorAll('.tb-shop')];shopSelect.replaceChildren(...shops.map((card,i)=>new Option(card.querySelector('[data-shop-name]').textContent,String(i),false,card===activeShop)));};
+    const priceFeedback=()=>{
+      priceForm.querySelectorAll('[data-cost]').forEach(input=>{priceForm.querySelector('[data-margin="'+input.name+'"]').textContent=input.value===''?'—':'¥'+(Number(input.value)-Number(input.dataset.cost)).toFixed(2);});
+      const values=[priceForm.elements.plus.value,priceForm.elements.premium.value];
+      const saved=prices.get(activeShop)||[168,198];
+      const dirty=values.some((value,i)=>value===''||Number(value)!==saved[i]);
+      priceDrafts.set(activeShop,values);
+      priceForm.querySelector('[data-local-submit]').disabled=!dirty;
+      priceForm.querySelector('[data-price-status]').textContent=dirty?'有未保存的更改 · 切换商店会保留草稿':'价格已保存';
+    };
+    const loadPrices=()=>{const values=priceDrafts.get(activeShop)||prices.get(activeShop)||[168,198];priceForm.elements.plus.value=values[0];priceForm.elements.premium.value=values[1];priceFeedback();};
+    updateShops();loadPrices();
+    priceForm.addEventListener('input',priceFeedback);
+    shopSelect.addEventListener('change',()=>{activeShop=app.querySelectorAll('.tb-shop')[Number(shopSelect.value)];loadPrices();enter(priceForm);});
+    bindForm(priceForm,()=>{prices.set(activeShop,[Number(priceForm.elements.plus.value),Number(priceForm.elements.premium.value)]);priceFeedback();notice.textContent='当前商店价格已保存到视觉稿。';});
+    const notifyObserver=new MutationObserver(()=>{if(notice.textContent)enter(notice);});notifyObserver.observe(notice,{childList:true,characterData:true,subtree:true});
+    app.querySelectorAll('.tb-tabs').forEach(list=>list.addEventListener('keydown',event=>{
+      if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+      const buttons=[...list.querySelectorAll('[role=tab]')];const current=buttons.indexOf(document.activeElement);if(current<0)return;
+      event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?buttons.length-1:(current+(event.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;
+      buttons[next].focus();selectTab(buttons[next].dataset.tabPage,buttons[next].dataset.tab);persist();
+    }));
+    app.addEventListener('click',async event => {
+      const button=event.target.closest('button'); if(!button) return;
+      if(button.dataset.page) { setPage(button.dataset.page); persist(); return; }
+      if(button.dataset.tab) { selectTab(button.dataset.tabPage,button.dataset.tab);notice.textContent='';persist();return; }
+      if(button.dataset.theme) {setTheme(button.dataset.theme);persist();return;}
+      if(button.dataset.filter) { state.filter=button.dataset.filter; app.querySelectorAll('[data-filter]').forEach(el=>el.setAttribute('aria-pressed',String(el===button))); filterRows(); persist(); return; }
+      const action=button.dataset.action;
+      if(action==='theme') { const current=getComputedStyle(root).colorScheme; const dark=current==='dark'||(state.theme==='system'&&matchMedia('(prefers-color-scheme:dark)').matches); setTheme(dark?'light':'dark'); persist(); }
+      if(action==='close') close();
+      if(action==='new'||action==='manage') {
+        const card=button.closest('.tb-shop');
+        const name=card?.querySelector('[data-shop-name]').textContent||'';
+        show(action==='new'?'新建商店':'管理商店',`<form class="tb-settings-form"><label class="tb-field">商店名称<input name="shopName" value="${escape(name)}" placeholder="给商店起个名字" required maxlength="24"></label><label class="tb-field">商店简介<input name="description" value="精选数字服务，安心交付。" maxlength="60"></label><p class="tb-sub">${action==='new'?'创建属于你的独立商店空间。':'品牌、商品与域名设置将在正式版本中整合于此。'}</p><button class="tb-button tb-primary cursor-interaction" type="button" data-local-submit>${action==='new'?'创建商店':'保存更改'}</button></form>`,button);
+        bindForm(body.querySelector('form'),e=>{
+          e.preventDefault(); const value=body.querySelector('[name=shopName]').value.trim(); if(!value) return;
+          if(card) card.querySelector('[data-shop-name]').textContent=value;
+          else { const newCard=app.querySelector('.tb-shop').cloneNode(true); newCard.querySelector('[data-shop-name]').textContent=value; newCard.querySelector('.tb-sub').textContent='new-shop.example.com'; newCard.querySelector('.tb-status')?.remove(); app.querySelector('.tb-shopgrid').append(newCard); app.querySelector('[data-store-count]').textContent=app.querySelectorAll('.tb-shop').length; }
+          updateShops();close(); notice.textContent='已在当前视觉稿中保存商店，未写入真实数据。'; icons();
+        });
+      }
+      if(action==='link') {
+        const card=button.closest('.tb-shop'); const address='https://'+card.querySelector('.tb-sub').textContent;
+        try { await navigator.clipboard.writeText(address); notice.textContent='已复制示例推广链接'; }
+        catch { show('推广链接',`<label class="tb-field">示例商店地址<input readonly value="${escape(address)}" aria-label="示例商店地址"></label><p class="tb-sub">当前预览不允许自动复制。链接已选中，可手动复制。</p>`,button); const field=body.querySelector('input');field.focus();field.select(); }
+      }
+      if(action==='pricing') {
+        const card=button.closest('.tb-shop'); const values=prices.get(card)||[168,198];
+        show('商品价格',`<p class="tb-sub">${escape(card.querySelector('[data-shop-name]').textContent)}</p><form class="tb-settings-form"><div class="tb-priceitem"><strong>ChatGPT Plus</strong><label class="tb-field">售价（元）<input name="plus" type="number" min="0" step="0.01" value="${values[0]}" required data-cost="148"></label><small>供货价 ¥148.00 · 预计差价 <output data-margin="plus">¥${(values[0]-148).toFixed(2)}</output></small></div><div class="tb-priceitem"><strong>X Premium</strong><label class="tb-field">售价（元）<input name="premium" type="number" min="0" step="0.01" value="${values[1]}" required data-cost="168"></label><small>供货价 ¥168.00 · 预计差价 <output data-margin="premium">¥${(values[1]-168).toFixed(2)}</output></small></div><button class="tb-button tb-primary cursor-interaction" type="button" data-local-submit>保存价格</button></form>`,button);
+        const form=body.querySelector('form');
+        form.addEventListener('input',e=>{const input=e.target;if(!input.matches('[data-cost]'))return;form.querySelector('[data-margin="'+input.name+'"]').textContent=input.value===''?'—':'¥'+(Number(input.value)-Number(input.dataset.cost)).toFixed(2);});
+        bindForm(form,()=>{const values=[Number(form.elements.plus.value),Number(form.elements.premium.value)];prices.set(card,values);priceDrafts.set(card,values);if(card===activeShop)loadPrices();close();notice.textContent='示例价格已保存，真实售价未修改。';});
+      }
+      if(action==='detail'||action==='quick-detail') { const row=action==='detail'?button.closest('tr'):app.querySelector('[data-order="'+button.dataset.orderId+'"]'); const pending=row.dataset.status==='pending'; show('订单详情',`<p class="tb-sub">${escape(row.dataset.order)}</p><h3>${escape(row.cells[0].childNodes[0].textContent)}</h3><span class="tb-status ${pending?'tb-pending':''}">${pending?'处理中':'已完成'}</span><dl><div><dt>客户邮箱</dt><dd>customer@example.com</dd></div><div><dt>订单售价</dt><dd>¥${row.dataset.order==='TB1025'?'198.00':'168.00'}</dd></div><div><dt>本单收益</dt><dd>${pending?'待确认':escape(row.cells[2].textContent)}</dd></div><div><dt>结算状态</dt><dd>${pending?'交付完成后核算':'可结算'}</dd></div></dl><p class="tb-sub">${pending?'订单正在处理，请勿重复下单。':'服务已完成，本单收益已计入可结算金额。'}</p>`,button); }
+      if(action==='payout') { show('申请提现','<p class="tb-sub">当前可提现</p><div class="tb-amount">¥680.00</div><dl><div><dt>收款账户</dt><dd>演示账户 · 尾号 0188</dd></div></dl><p class="tb-sub">本次仅预览提现流程，不会发起真实申请。</p><button type="button" class="tb-button tb-primary cursor-interaction" data-action="confirm-payout">预览提交结果</button>',button); }
+      if(action==='confirm-payout') { close(); notice.textContent='提现申请效果已预览，未发起真实提现。'; }
+      if(action==='toggle-coupon') {const enabled=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(enabled));button.textContent=enabled?'暂停':'启用';button.closest('article').querySelector('[data-coupon-status]').textContent=enabled?'使用中':'已暂停';enter(button.closest('article'));notice.textContent=enabled?'示例优惠券已启用':'示例优惠券已暂停';}
+      if(action==='new-coupon') {
+        show('新建优惠券','<form class="tb-settings-form"><label class="tb-field">优惠码<input name="code" placeholder="例如 SUMMER10" pattern="[A-Za-z0-9_-]{3,24}" required maxlength="24"></label><label class="tb-field">优惠金额（元）<input name="amount" type="number" min="0.01" step="0.01" value="10" required></label><label class="tb-field">适用商店<select name="shop"></select></label><button type="button" class="tb-button tb-primary cursor-interaction" data-local-submit>创建优惠券</button></form>',button);
+        const form=body.querySelector('form');app.querySelectorAll('[data-shop-name]').forEach(el=>form.elements.shop.add(new Option(el.textContent)));
+        bindForm(form,()=>{const code=form.elements.code.value.toUpperCase();if([...app.querySelectorAll('[data-coupon-list] strong')].some(el=>el.textContent===code)){form.elements.code.setCustomValidity('优惠码已存在');form.elements.code.reportValidity();return;}const row=document.createElement('article');row.className='tb-resource-row';row.innerHTML=`<div><strong>${escape(code)}</strong><small>立减 ¥${Number(form.elements.amount.value).toFixed(2)} · ${escape(form.elements.shop.value)} · 已用 0 次</small></div><span class="tb-status" data-coupon-status>使用中</span><button type="button" class="tb-button cursor-interaction" data-action="toggle-coupon" aria-label="启用优惠券 ${escape(code)}" aria-pressed="true">暂停</button>`;app.querySelector('[data-coupon-list]').append(row);close();notice.textContent='示例优惠券已创建';enter(row);});
+        form.elements.code.addEventListener('input',()=>form.elements.code.setCustomValidity(''));
+      }
+      if(action==='domain-info') {const row=button.closest('article');show('域名连接详情',`<h3>${escape(row.querySelector('strong').textContent)}</h3><span class="tb-status">已连接</span><dl><div><dt>连接状态</dt><dd>解析正常</dd></div><div><dt>HTTPS</dt><dd>已启用</dd></div></dl><p class="tb-sub">此处展示示例域名状态。</p>`,button);}
+      if(action==='new-domain') {
+        show('添加域名','<form class="tb-settings-form"><label class="tb-field">域名<input name="hostname" placeholder="shop.example.com" required pattern="[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)+"></label><p class="tb-sub">填写后查看连接指引。本视觉稿不会修改域名解析。</p><button type="button" class="tb-button tb-primary cursor-interaction" data-local-submit>查看连接指引</button></form>',button);
+        bindForm(body.querySelector('form'),()=>{const hostname=body.querySelector('[name=hostname]').value;body.innerHTML=`<h3>${escape(hostname)}</h3><span class="tb-status tb-pending">待配置</span><p class="tb-sub">正式流程会在这里提供需要添加的 DNS 记录，并在验证通过后自动连接。当前是交互预览。</p><button type="button" class="tb-button cursor-interaction" data-action="close">完成预览</button>`;icons();enter(body);body.querySelector('button').focus();});
+      }
+    });
+    app.querySelector('input[type=search]').addEventListener('input',filterRows);
+    settings.elements.solid.addEventListener('change',e=>{setSolid(e.target.checked); persist();});
+    settings.elements.motion.addEventListener('change',e=>{state.motion=e.target.checked;root.dataset.motion=state.motion?'on':'off';if(!moving())app.getAnimations({subtree:true}).forEach(animation=>animation.finish());persist();});
+    motionQuery.addEventListener('change',()=>{if(!moving())app.getAnimations({subtree:true}).forEach(animation=>animation.finish());});
+    bindForm(settings,e=>{e.preventDefault(); app.querySelector('.tb-person strong').textContent=settings.elements.displayName.value; notice.textContent='设置已保存在当前视觉稿中，未修改真实账号。';persist();});
+    overlay.addEventListener('click',e=>{if(e.target===overlay) close();});
+    overlay.addEventListener('keydown',e=>{
+      if(e.key==='Escape') { e.preventDefault(); close(); }
+      if(e.key==='Tab') { const list=[...overlay.querySelectorAll('button,input,select')].filter(el=>!el.disabled); const first=list[0],last=list[list.length-1]; if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();} }
+    });
+  });
+  const design={radius:16,blur:20};
+  const apply=()=>{root.style.setProperty('--tb-radius',design.radius+'px');root.style.setProperty('--tb-glass-blur',design.blur+'px');};
+  if(globalThis.Tweak) { const tweak=new Tweak({container:root,onChange:apply});tweak.addSlider(design,'radius',{label:'内容卡片圆角',min:8,max:28,unit:'px'});tweak.addSlider(design,'blur',{label:'玻璃模糊强度',min:8,max:40,unit:'px'}); }
+})();
+</script>

@@ -1,0 +1,72 @@
+/* Shared Transitions.dev state and measured-height transitions. */
+.live-account.live-account-check {
+  --account-accent: var(--primary);
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  color: var(--account-accent);
+  background: color-mix(in srgb, var(--account-accent) 4%, var(--card));
+  border-color: color-mix(in srgb, var(--account-accent) 24%, var(--border));
+  box-shadow: none;
+  transition: background-color var(--modal-open-dur) var(--modal-ease), border-color var(--modal-open-dur) var(--modal-ease), color var(--text-swap-dur) ease-in-out;
+}
+.live-account-check-height > .animated-height-content {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 3px 10px;
+  padding: 14px 16px;
+}
+.live-account-check[data-check-state=failed] { --account-accent: #c53939; }
+.live-account-check[data-check-state=passed] { --account-accent: #21804f; }
+.live-account-check .live-account-avatar {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  color: var(--account-accent);
+  background: color-mix(in srgb, var(--account-accent) 8%, var(--card));
+}
+.live-account-check .live-account-info { display: contents; }
+.live-account-check .live-account-label { grid-column: 2; grid-row: 1; font-size: 10px; letter-spacing: 0; }
+.live-account-check .live-account-email { grid-column: 2 / -1; grid-row: 2; font-size: 13px; line-height: 1.5; }
+.live-account-check .live-account-badge {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: nowrap;
+  color: var(--account-accent);
+  background: none;
+}
+.live-account-check-detail {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-top: 9px;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--account-accent) 12%, transparent);
+}
+.live-account-check-detail p { margin: 0; font-size: 12px; line-height: 1.7; color: var(--foreground); }
+.live-account-check-detail .live-account-check-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+.live-account-check-date > span { color: var(--muted-foreground); white-space: nowrap; }
+.live-account-check-date time { font-size: inherit; font-weight: 550; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dark .live-account.live-account-check { background: color-mix(in srgb, var(--account-accent) 6%, var(--card)); }
+.dark .live-account-check[data-check-state=failed] { --account-accent: #f08b8b; }
+.dark .live-account-check[data-check-state=passed] { --account-accent: #7ccaa0; }
+@media (max-width: 480px) {
+  .live-account-check-height > .animated-height-content { padding: 12px; gap: 3px 8px; }
+  .live-account-check-detail p { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-account.live-account-check { transition: none; }
+}

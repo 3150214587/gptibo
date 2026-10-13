@@ -1,0 +1,25 @@
+.ticket-workspace { min-width: 0; }
+.ticket-workspace .admin-panel-title p { margin: 6px 0 0; font-size: 13px; color: var(--muted-foreground); }
+.ticket-filters { display: flex; gap: 10px; padding: 16px 20px; align-items: center; flex-wrap: wrap; }
+.ticket-filters > input { flex: 1; min-width: 180px; }
+.ticket-list { display: grid; padding: 0 20px 16px; gap: 10px; }
+.ticket-row { display: grid; gap: 8px; padding: 18px; text-align: left; border: 1px solid var(--border); border-radius: 12px; background: var(--background); cursor: pointer; overflow-wrap: anywhere; }
+.ticket-row:hover { background: var(--muted); }
+.ticket-row > div { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.ticket-row strong { font-size: 15px; }
+.ticket-row > span, .ticket-row small { font-size: 12px; color: var(--muted-foreground); }
+.ticket-dialog { width: min(680px, calc(100vw - 24px)); max-width: 680px; max-height: calc(100dvh - 32px); overflow-y: auto; overflow-wrap: anywhere; }
+.ticket-form { display: grid; gap: 10px; }
+.ticket-form > label { font-size: 13px; font-weight: 600; }
+.ticket-form textarea { resize: vertical; min-height: 110px; }
+.ticket-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--muted-foreground); }
+.ticket-messages { list-style: none; display: grid; gap: 12px; margin: 0; padding: 4px 0; }
+.ticket-messages li { padding: 16px; border: 1px solid var(--border); border-radius: 12px; }
+.ticket-messages li[data-role="admin"] { background: var(--muted); }
+.ticket-messages li > div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+.ticket-messages time, .ticket-messages small { color: var(--muted-foreground); font-size: 11px; }
+.ticket-messages p { white-space: pre-wrap; line-height: 1.7; font-size: 14px; margin: 10px 0; }
+.ticket-actions, .ticket-alert-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ticket-alert { border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.ticket-alert p { margin: 3px 0; font-size: 12px; color: var(--muted-foreground); }
+@media (max-width: 600px) { .ticket-filters, .ticket-list { padding-left: 12px; padding-right: 12px; } .ticket-actions > button { flex: 1; } }
