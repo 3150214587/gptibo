@@ -7,7 +7,6 @@ import (
 	"gptibo/storefront/internal/security"
 	"gptibo/storefront/internal/xgift"
 	"regexp"
-	"strings"
 )
 
 func registerXGift(group, admin *gin.RouterGroup, s *xgift.Service, token func(*gin.Context, string) string) {
@@ -51,7 +50,10 @@ func registerXGift(group, admin *gin.RouterGroup, s *xgift.Service, token func(*
 			fail(c, e)
 			return
 		}
-		console := strings.TrimSuffix(client.Base, "/v1")
+		console := "https://x-api.shop.example.invalid"
+		if s.Backend == "platform" {
+			console = "https://api.shop.example.invalid"
+		}
 		c.JSON(200, gin.H{"configured": true, "balance": balance, "products": products, "consoleUrl": console})
 	})
 	admin.GET("/xgift/order", func(c *gin.Context) {

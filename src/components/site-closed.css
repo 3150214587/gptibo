@@ -1,0 +1,19 @@
+.site-closed {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 32px 24px;
+  background: #fafafa;
+  color: #333;
+  text-align: center;
+}
+
+.site-closed h1 {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: .12em;
+}

@@ -1,5 +1,5 @@
 /* Adapted from Transitions.dev free modal, text-states-swap, texts-reveal
-   and success-check recipes (https://transitions.dev).
+   and success-check recipes. Source snapshots: /transitions/*.md.
    Base UI owns lifecycle and focus; data attributes replace manual timers. */
 :root { --modal-open-dur:250ms; --modal-close-dur:150ms; --modal-scale:.96; --modal-ease:cubic-bezier(.22,1,.36,1); --text-swap-dur:150ms; --text-swap-translate-y:4px; --text-swap-blur:2px; --check-path-dur:500ms; --check-path-delay:80ms; }
 .motion-dialog[data-slot=dialog-content] { animation:none; opacity:1; transform:scale(1); transform-origin:center; transition:transform var(--modal-open-dur) var(--modal-ease),opacity var(--modal-open-dur) var(--modal-ease); }

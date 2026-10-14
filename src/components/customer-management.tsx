@@ -457,7 +457,7 @@ function AccountFormDialog({
                 onChange={e => setValue(e.target.value)}
                 required
                 maxLength={254}
-                placeholder="例如：user@example.com（可与客户联系邮箱不同）"
+                placeholder="例如：user@openai.com（可与客户联系邮箱不同）"
               />
               <span className="text-xs text-muted-foreground">
                 同一客户下的账号标识不能重复。

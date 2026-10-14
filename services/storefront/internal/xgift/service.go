@@ -24,7 +24,6 @@ type Service struct {
 	Store                  *store.Store
 	Auth                   *auth.Service
 	Clients                map[string]*Client
-	SupplyLimits           map[string]int64
 	Backend                string
 	Checkout, PaymentReady bool
 }
@@ -56,12 +55,6 @@ func find(ctx context.Context, q orders.Query, id string) (Purchase, error) {
 		e = json.Unmarshal(b, &p)
 	}
 	return p, e
-}
-func (s *Service) supplyAllowed(plan, backend string, points int64) bool {
-	if backend == "legacy" {
-		return points == plans[plan] && points > 0
-	}
-	return points > 0 && points <= s.SupplyLimits[plan]
 }
 func (s *Service) Enabled(plan string) bool {
 	return IsPlan(plan) && s.Checkout && s.PaymentReady && s.Clients[s.Backend] != nil
@@ -130,11 +123,9 @@ func (s *Service) Preflight(ctx context.Context, owner, plan, value string) (map
 		return nil, all.e
 	}
 	available := false
-	var quotedPoints int64
 	for _, p := range all.products {
-		if p.Code == plan && p.Enabled == 1 && s.supplyAllowed(plan, s.Backend, p.Points) && all.balance.Available >= p.Points && all.accept {
+		if p.Code == plan && p.Enabled == 1 && p.Points == plans[plan] && all.balance.Available >= p.Points && all.accept {
 			available = true
-			quotedPoints = p.Points
 		}
 	}
 	if !available {
@@ -146,7 +137,7 @@ func (s *Service) Preflight(ctx context.Context, owner, plan, value string) (map
 		return nil, e
 	}
 	defer tx.Rollback(ctx)
-	if _, e = tx.Exec(ctx, `INSERT INTO xgift_preflights(token,owner_hash,username,recipient_id,product_code,points,expires_at) VALUES($1,$2,$3,$4,$5,$6,$7)`, token, owner, username, check.Recipient, plan, quotedPoints, expires); e != nil {
+	if _, e = tx.Exec(ctx, `INSERT INTO xgift_preflights(token,owner_hash,username,recipient_id,product_code,points,expires_at) VALUES($1,$2,$3,$4,$5,$6,$7)`, token, owner, username, check.Recipient, plan, plans[plan], expires); e != nil {
 		return nil, e
 	}
 	if _, e = tx.Exec(ctx, `INSERT INTO xgift_preflight_backends(token,supplier_backend) VALUES($1,$2)`, token, s.Backend); e != nil {
@@ -170,7 +161,7 @@ func (s *Service) Snapshot(ctx context.Context, tx pgx.Tx, o orders.Order, in or
 	if backend != s.Backend {
 		return orders.Conflict()
 	}
-	if !s.supplyAllowed(o.Plan, backend, points) {
+	if points != plans[o.Plan] {
 		return orders.Conflict()
 	}
 	_, e = tx.Exec(ctx, `INSERT INTO xgift_purchases(order_id,username,recipient_id,product_code,points,credential_hash,updated_at,supplier_backend) VALUES($1,$2,$3,$4,$5,$6,$7,$8)`, o.ID, Username(in.Username), recipient, o.Plan, points, s.Clients[backend].Fingerprint(), time.Now().UnixMilli(), backend)
@@ -345,7 +336,7 @@ func (s *Service) Fulfill(ctx context.Context, id string) error {
 		return nil
 	}
 	var api *APIError
-	if p.Supplier == nil && errors.As(e, &api) && slices.Contains([]string{"not_eligible", "recipient_changed", "product_unavailable", "insufficient_points", "execution_disabled", "product_disabled", "price_changed", "insufficient_balance", "execution_paused", "card_rule_disabled", "card_rule_missing", "card_missing", "x_configuration_missing", "x_product_missing", "billing_profile_missing", "provider_missing", "worker_unavailable"}, api.Code) {
+	if p.Supplier == nil && errors.As(e, &api) && slices.Contains([]string{"not_eligible", "recipient_changed", "product_unavailable", "insufficient_points", "execution_disabled", "product_disabled", "price_changed", "insufficient_balance", "execution_paused", "card_rule_disabled", "card_rule_missing", "card_missing", "x_configuration_missing", "billing_profile_missing", "provider_missing", "worker_unavailable"}, api.Code) {
 		return s.finish(ctx, p, "failed", nil, nil, &api.Code)
 	}
 	cleanup, cancel := context.WithTimeout(context.Background(), 3*time.Second)

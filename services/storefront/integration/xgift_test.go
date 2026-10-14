@@ -7,8 +7,8 @@ import (
 	"gptibo/storefront/internal/httpapi"
 	"gptibo/storefront/internal/orders"
 	"gptibo/storefront/internal/payments"
-	"gptibo/storefront/internal/recharge"
 	"gptibo/storefront/internal/security"
+	"gptibo/storefront/internal/recharge"
 	"gptibo/storefront/internal/xgift"
 	"io"
 	"log/slog"
@@ -25,39 +25,14 @@ type giftFake struct {
 	ambiguous                                                     bool
 }
 
-func TestXGiftCustomSupplyQuoteIsSavedBeforePayment(t *testing.T) {
-	owner, app, a, _, _ := identityFixture(t)
-	client, err := xgift.NewClient("https://supply.example.test/v1", "platform", "", "key", "fixture-secret")
-	if err != nil {
-		t.Fatal(err)
-	}
-	fake := &giftFake{backend: "platform", status: "queued", points: 137}
-	client.HTTP.Transport = rechargeTransport(fake.round)
-	s := &xgift.Service{Store: app, Auth: a, Backend: "platform", Checkout: true, PaymentReady: true, SupplyLimits: map[string]int64{"x-premium-3m": 200}, Clients: map[string]*xgift.Client{"platform": client}}
-	pay := payments.Service{Store: app, Provider: &paymentFake{account: "fixture"}, Checkout: true, NotifyOrigin: testOrigin}
-	h := httpapi.Router(app, "fixture", slog.New(slog.NewTextHandler(io.Discard, nil)), httpapi.Options{Origin: testOrigin, Auth: a, Payments: &pay, XGift: s})
-	execSQL(t, owner, `INSERT INTO catalog_plans(id,product_id,name,price_cents,enabled) VALUES('x-premium-3m','x-premium','X3',500,true)`)
-	buyer := &http.Cookie{Name: "__Host-sf_buyer", Value: security.Token()}
-	pre := object(t, request(h, "POST", "/api/orders/xgift/eligibility", map[string]any{"plan": "x-premium-3m", "username": "receiver"}, buyer), 200)
-	in := map[string]any{"plan": "x-premium-3m", "username": "receiver", "preflightToken": pre["token"], "email": "buyer@example.test", "key": security.ID(), "expectedPrice": 500}
-	s.SupplyLimits["x-premium-3m"] = 100
-	object(t, request(h, "POST", "/api/orders", in, buyer), 409)
-	s.SupplyLimits["x-premium-3m"] = 200
-	created := object(t, request(h, "POST", "/api/orders", in, buyer), 201)["order"].(map[string]any)
-	var points int64
-	if err := owner.DB.QueryRow(context.Background(), `SELECT points FROM xgift_purchases WHERE order_id=$1`, created["id"]).Scan(&points); err != nil || points != 137 {
-		t.Fatal("custom quote was replaced by legacy price", points, err)
-	}
-}
-
 func (f *giftFake) round(r *http.Request) (*http.Response, error) {
 	var data any
 	switch {
 	case r.URL.Path == "/v1/products":
 		if f.backend == "legacy" {
-			data = []any{map[string]any{"code": "x-premium-3m", "name": "X3", "points": f.points, "enabled": 1}, map[string]any{"code": "x-premium-6m", "name": "X6", "points": 3400, "enabled": 1}}
+			data = []any{map[string]any{"code": "x-premium-3m", "name": "X3", "points": 1700, "enabled": 1}, map[string]any{"code": "x-premium-6m", "name": "X6", "points": 3400, "enabled": 1}}
 		} else {
-			data = []any{map[string]any{"code": "x-3m", "name": "X3", "business": "x", "supply_minor": f.points, "enabled": true, "available": true}, map[string]any{"code": "x-6m", "name": "X6", "business": "x", "supply_minor": 3400, "enabled": true, "available": true}}
+			data = []any{map[string]any{"code": "x-3m", "name": "X3", "business": "x", "supply_minor": 1700, "enabled": true, "available": true}, map[string]any{"code": "x-6m", "name": "X6", "business": "x", "supply_minor": 3400, "enabled": true, "available": true}}
 		}
 	case r.URL.Path == "/v1/balance":
 		if f.backend == "legacy" {
@@ -133,7 +108,7 @@ func TestXGiftOriginalIdentityPreflightAndRecovery(t *testing.T) {
 			}
 			fake := &giftFake{backend: backend, status: "queued", points: 1700, ambiguous: true}
 			client.HTTP.Transport = rechargeTransport(fake.round)
-			s := &xgift.Service{Store: app, Auth: a, Backend: backend, SupplyLimits: map[string]int64{"x-premium-3m": 1700, "x-premium-6m": 3400}, Checkout: true, PaymentReady: true, Clients: map[string]*xgift.Client{backend: client}}
+			s := &xgift.Service{Store: app, Auth: a, Backend: backend, Checkout: true, PaymentReady: true, Clients: map[string]*xgift.Client{backend: client}}
 			pay := payments.Service{Store: app, Provider: &paymentFake{account: "fixture"}, Checkout: true, NotifyOrigin: testOrigin}
 			h := httpapi.Router(app, "fixture", slog.New(slog.NewTextHandler(io.Discard, nil)), httpapi.Options{Origin: testOrigin, Auth: a, Payments: &pay, XGift: s})
 			execSQL(t, owner, `INSERT INTO catalog_plans(id,product_id,name,price_cents,enabled) VALUES('x-premium-3m','x-premium','X3',3500,true)`)

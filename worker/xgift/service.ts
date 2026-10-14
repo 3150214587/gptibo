@@ -4,14 +4,6 @@ import { isXGiftPlan, xUsername, xgiftPlans } from '../../shared/xgift-products.
 import { configured, xgiftBackend, xgiftEligibility, xgiftProducts, xgiftBalance, xgiftCapabilities, createXGiftOrder, queryXGiftOrder, XGiftError, type XGiftOrder, type XGiftBackend } from './client.ts'
 export interface Preflight { token: string; owner_hash: string; username: string; recipient_id: string; product_code: string; points: number; expires_at: number; supplier_backend: XGiftBackend }
 interface Purchase { order_id: string; username: string; recipient_id: string; product_code: string; points: number; credential_hash: string; state: string; supplier_order: string | null; receipt: string | null; failure_code: string | null; lease_token: string | null; lease_until: number; attempted_at: number | null; next_check: number; supplier_backend: XGiftBackend; supplier_merchant_order_no: string | null; recovery_attempt: number }
-export function supplyAllowed(env: Env, plan: string, backend: XGiftBackend, points: number) {
-  if (!Number.isSafeInteger(points) || points <= 0 || !isXGiftPlan(plan)) return false
-  if (backend === 'legacy') return points === xgiftPlans[plan].points
-  try {
-    const limits = JSON.parse(env.XGIFT_MAX_SUPPLY_MINOR ?? '{}')
-    return limits && !Array.isArray(limits) && Number.isSafeInteger(limits[plan]) && limits[plan] > 0 && limits[plan] <= 1000000000 && points <= limits[plan]
-  } catch { return false }
-}
 export const xgiftCheckoutEnabled = (env: Env, backend: XGiftBackend = xgiftBackend(env)) => env.XGIFT_CHECKOUT_ENABLED === 'true' && configured(env, backend)
 const credentials = (env: Env, backend: XGiftBackend) => hash(backend === 'platform'
   ? ['platform', env.XGIFT_PLATFORM_API_BASE ?? 'https://api.shop.example.invalid/v1', env.XGIFT_PLATFORM_KEY_ID, env.XGIFT_PLATFORM_CLIENT_SECRET].join('|')
@@ -29,7 +21,7 @@ export async function preflightXGift(env: Env, owner: string, data: Record<strin
   if (!/^\d{1,25}$/.test(check.recipient_id ?? '')) throw new ApiError('无法确认接收账号身份。', 503)
   const [list, balance, capacity] = await Promise.all([xgiftProducts(env, backend), xgiftBalance(env, backend), xgiftCapabilities(env, backend)])
   const product = list.find(p => p.code === data.plan)
-  if (!product?.enabled || !Number.isSafeInteger(product.points) || !supplyAllowed(env, data.plan, backend, product.points) || balance.available < product.points || capacity.accepts_orders !== true) throw new ApiError('赠送服务暂不可下单，请稍后再试。', 503)
+  if (!product?.enabled || !Number.isSafeInteger(product.points) || product.points !== xgiftPlans[data.plan].points || balance.available < product.points || capacity.accepts_orders !== true) throw new ApiError('赠送服务暂不可下单，请稍后再试。', 503)
   const token = crypto.randomUUID(), expires = Date.now() + 5 * 60000
   await env.INTEREST_DB.batch([
     env.INTEREST_DB.prepare('INSERT INTO xgift_preflights(token,owner_hash,username,recipient_id,product_code,points,expires_at) VALUES(?,?,?,?,?,?,?)').bind(token, owner, username, check.recipient_id!, product.code, product.points, expires),
@@ -42,7 +34,7 @@ export async function xgiftSnapshot(env: Env, owner: string, data: Record<string
   const username = xUsername(data.username)
   const p = await env.INTEREST_DB.prepare("SELECT p.*,COALESCE(b.supplier_backend,'legacy') supplier_backend FROM xgift_preflights p LEFT JOIN xgift_preflight_backends b ON b.token=p.token WHERE p.token=? AND p.owner_hash=? AND p.username=? AND p.product_code=? AND p.expires_at>?")
     .bind(typeof data.preflightToken === 'string' ? data.preflightToken : '', owner, username, String(data.plan), Date.now()).first<Preflight>()
-  if (!p || p.supplier_backend !== xgiftBackend(env) || !supplyAllowed(env, p.product_code, p.supplier_backend, p.points)) throw new ApiError('请重新检测赠送资格；检测有效期为 5 分钟。', 409)
+  if (!p || p.supplier_backend !== xgiftBackend(env)) throw new ApiError('请重新检测赠送资格；检测有效期为 5 分钟。', 409)
   return p
 }
 export async function xgiftSnapshotStatement(env: Env, id: string, p: Preflight) {
@@ -93,7 +85,7 @@ export async function fulfillXGift(env: Env, id: string) {
     await finish(env, row, lease, result.status === 'succeeded' ? 'succeeded' : result.status === 'failed' ? 'failed' : result.status === 'unknown' ? 'unknown' : 'pending', result.id, result.receipt, result.failure_code)
   } catch (error) {
     // A signed business rejection only proves no order was accepted before an ID is known.
-    if (!row.supplier_order && error instanceof XGiftError && ['not_eligible','recipient_changed','product_unavailable','insufficient_points','execution_disabled','product_disabled','price_changed','insufficient_balance','execution_paused','card_rule_disabled','card_rule_missing','card_missing','x_configuration_missing','x_product_missing','billing_profile_missing','provider_missing','worker_unavailable'].includes(error.code)) {
+    if (!row.supplier_order && error instanceof XGiftError && ['not_eligible','recipient_changed','product_unavailable','insufficient_points','execution_disabled','product_disabled','price_changed','insufficient_balance','execution_paused','card_rule_disabled','card_rule_missing','card_missing','x_configuration_missing','billing_profile_missing','provider_missing','worker_unavailable'].includes(error.code)) {
       await finish(env, row, lease, 'failed', null, null, error.code)
       return
     }
