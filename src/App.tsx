@@ -22,7 +22,6 @@ import { useScrollReveal } from '@/lib/use-scroll-reveal'
 import { useStore } from '@/lib/use-store'
 import { canonicalStorefrontUrl, storefrontHref } from '@/lib/storefront-routing'
 import { trackVisitor } from '@/lib/visitor-tracking'
-import { isClosedHomepage } from '@/components/site-closed'
 import './App.css'
 import './styles/motion.css'
 import './styles/catalog-conversion.css'
@@ -110,7 +109,6 @@ function App() {
   }, [page, store.ready, store.shopUnavailable, partnerSlug])
   const navigate = (next: string) => {
     const href = storefrontHref(next)
-    if (isClosedHomepage(new URL(href, location.href))) { location.assign(href); return }
     if (location.pathname + location.search + location.hash !== href) history.pushState(history.state, '', href)
     setPage(next)
   }

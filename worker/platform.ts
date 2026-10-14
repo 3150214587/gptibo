@@ -67,6 +67,7 @@ export interface Env {
   XGIFT_KEY_ID?: string
   XGIFT_CLIENT_SECRET?: string
   XGIFT_CHECKOUT_ENABLED?: string
+  XGIFT_MAX_SUPPLY_MINOR?: string
   XGIFT_BACKEND?: string
   XGIFT_PLATFORM_API_BASE?: string
   XGIFT_PLATFORM_KEY_ID?: string

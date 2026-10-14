@@ -1,4 +1,4 @@
-// Adapted from ../tl/sms-platform-worker/src/alipay.js. No embedded credentials.
+// Alipay protocol adapter. Credentials are supplied only at runtime.
 import type { PaymentOrder, PaymentProvider, PaymentResult, RefundRequest } from './types.ts'
 import { amountCents, amountText } from './types.ts'
 

@@ -1,6 +1,7 @@
 package config
 
 import (
+	"encoding/json"
 	"errors"
 	"gptibo/storefront/internal/xgift"
 	"os"
@@ -14,6 +15,16 @@ func LoadXGift() (*xgift.Service, error) {
 	if s.Backend != "legacy" && s.Backend != "platform" {
 		return nil, errors.New("invalid XGIFT_BACKEND")
 	}
+	if raw := os.Getenv("XGIFT_MAX_SUPPLY_MINOR"); raw != "" {
+		if json.Unmarshal([]byte(raw), &s.SupplyLimits) != nil || s.SupplyLimits == nil {
+			return nil, errors.New("invalid XGIFT_MAX_SUPPLY_MINOR")
+		}
+		for plan, limit := range s.SupplyLimits {
+			if !xgift.IsPlan(plan) || limit <= 0 || limit > 1000000000 {
+				return nil, errors.New("invalid XGIFT_MAX_SUPPLY_MINOR")
+			}
+		}
+	}
 	var e error
 	s.Checkout, e = flag("XGIFT_CHECKOUT_ENABLED")
 	if e != nil {
@@ -21,6 +32,9 @@ func LoadXGift() (*xgift.Service, error) {
 	}
 	if os.Getenv("ORDER_TESTING_ENABLED") == "true" {
 		s.Checkout = false
+	}
+	if s.Checkout && s.Backend == "platform" && len(s.SupplyLimits) == 0 {
+		return nil, errors.New("platform checkout requires XGIFT_MAX_SUPPLY_MINOR")
 	}
 	for _, backend := range []string{"legacy", "platform"} {
 		prefix := "XGIFT_"

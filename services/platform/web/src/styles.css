@@ -1,0 +1,985 @@
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@source "../../../../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@import "@cloudflare/kumo/styles/tailwind";
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/* Keep Kumo's semantic palette and the dashboard's native control scale. */
+@theme {
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 14px;
+  --text-base--line-height: 1.5;
+  --text-lg: 16px;
+}
+:root {
+  font-family: var(--font-sans);
+  color: var(--text-color-kumo-default);
+  background: var(--color-kumo-canvas);
+  --workspace-sidebar-width: 260px;
+  --workspace-topbar-height: 58px;
+  --control-height: 36px;
+  --control-radius: 8px;
+  --compact-height: 26px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-kumo-brand);
+  outline-offset: 3px;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  color: var(--text-color-kumo-strong);
+}
+h2 {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+}
+h3 {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.manual-payment {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid var(--color-kumo-line);
+  border-radius: var(--control-radius);
+  background: var(--color-kumo-canvas);
+}
+.manual-payment p {
+  font-size: 13px;
+}
+.manual-confirmation {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 16px 0 8px;
+  font-size: 13px;
+}
+.manual-confirmation input {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+.manual-payment button {
+  justify-self: start;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: var(--workspace-sidebar-width) minmax(0, 1fr);
+  min-height: 100dvh;
+  transition: grid-template-columns 250ms ease;
+}
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  background: var(--color-kumo-canvas);
+  border-right: 1px solid var(--color-kumo-line);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.brand,
+.login-brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color-kumo-strong);
+}
+.brand {
+  height: var(--workspace-topbar-height);
+  padding: 0 20px;
+  border-bottom: 1px solid var(--color-kumo-line);
+  flex-shrink: 0;
+}
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  display: block;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.brand small,
+.login-brand small {
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-color-kumo-subtle);
+  font-weight: 400;
+}
+.nav-label {
+  font-size: 12px;
+  color: var(--text-color-kumo-subtle);
+  padding: 22px 24px 8px;
+}
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 14px 16px;
+  overflow-y: auto;
+  flex: 1;
+}
+.sidebar nav button {
+  border: 0;
+  background: transparent;
+  border-radius: 6px;
+  min-height: 36px;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-color-kumo-default);
+  transition: background 100ms;
+  flex-shrink: 0;
+}
+.sidebar nav button svg {
+  color: var(--text-color-kumo-subtle);
+  flex-shrink: 0;
+}
+.sidebar nav button:hover,
+.sidebar nav button[aria-current] {
+  background: var(--color-kumo-tint);
+}
+.sidebar nav button[aria-current] {
+  color: var(--text-color-kumo-strong);
+  font-weight: 500;
+}
+.sidebar-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-top: 1px solid var(--color-kumo-line);
+  flex-shrink: 0;
+}
+.sidebar-bottom .stack {
+  overflow: hidden;
+  flex: 1;
+  font-size: 13px;
+}
+.sidebar-bottom small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sidebar-bottom button {
+  border: 0;
+  background: transparent;
+  color: var(--text-color-kumo-subtle);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.sidebar-bottom button:hover {
+  background: var(--color-kumo-tint);
+  color: var(--text-color-kumo-default);
+}
+.sidebar-toggle-row {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-top: 1px solid var(--color-kumo-line);
+  flex-shrink: 0;
+}
+.sidebar-toggle-row .sidebar-toggle {
+  width: 34px;
+  height: 34px;
+  color: var(--text-color-kumo-subtle);
+}
+.sidebar-collapsed {
+  --workspace-sidebar-width: 57px;
+}
+.sidebar-collapsed .brand {
+  justify-content: center;
+  padding: 0;
+}
+.sidebar-collapsed .brand-name,
+.sidebar-collapsed .nav-text,
+.sidebar-collapsed .sidebar-bottom .avatar,
+.sidebar-collapsed .sidebar-bottom .stack {
+  display: none;
+}
+.sidebar-collapsed .nav-label {
+  font-size: 0;
+  height: 30px;
+  padding: 0;
+}
+.sidebar-collapsed .sidebar nav {
+  padding: 0 11px 16px;
+}
+.sidebar-collapsed .sidebar nav button {
+  justify-content: center;
+  padding: 7px 0;
+  gap: 0;
+}
+.sidebar-collapsed .sidebar-bottom {
+  justify-content: center;
+  padding: 8px 0;
+}
+.sidebar-collapsed .sidebar-toggle-row {
+  justify-content: center;
+  padding: 0 11px;
+}
+.avatar {
+  width: 28px;
+  height: 28px;
+  background: var(--color-kumo-tint);
+  border: 1px solid var(--color-kumo-line);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.workspace-main {
+  min-width: 0;
+}
+.workspace-topbar {
+  height: var(--workspace-topbar-height);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid var(--color-kumo-line);
+  font-size: 14px;
+}
+.workspace-origin {
+  font-weight: 500;
+}
+.workspace-role {
+  font-size: 12px;
+  line-height: 18px;
+  border: 1px solid var(--color-kumo-line);
+  border-radius: 999px;
+  padding: 0 8px;
+}
+.workspace-account {
+  margin-left: auto;
+  color: var(--text-color-kumo-subtle);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+main {
+  padding: 32px;
+  min-width: 0;
+}
+main > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  color: var(--text-color-kumo-subtle);
+  margin-bottom: 8px;
+}
+.page-description {
+  color: var(--text-color-kumo-subtle);
+  margin-top: 8px;
+  line-height: 21px;
+  max-width: 720px;
+}
+.header-actions,
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.header-actions {
+  padding-top: 24px;
+  flex-shrink: 0;
+}
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--color-kumo-line);
+  border-radius: var(--control-radius);
+  background: var(--color-kumo-base);
+  padding: 20px 0;
+  margin-bottom: 28px;
+}
+.summary-strip > div {
+  padding: 0 24px;
+  border-left: 1px solid var(--color-kumo-line);
+}
+.summary-strip > div:first-child {
+  border: 0;
+}
+.summary-strip span {
+  display: block;
+  color: var(--text-color-kumo-subtle);
+  font-size: 13px;
+}
+.summary-strip strong {
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.6px;
+  font-weight: 600;
+  display: block;
+  margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0 16px;
+}
+.table-scroll {
+  overflow: auto;
+  border: 1px solid var(--color-kumo-line);
+  border-radius: var(--control-radius);
+  background: var(--color-kumo-base);
+}
+.platform-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.platform-table th {
+  height: 40px;
+  background: var(--color-kumo-base);
+  color: var(--text-color-kumo-default);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 8px 12px;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-kumo-line);
+}
+.platform-table td {
+  height: 40px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-kumo-line);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: nowrap;
+}
+.platform-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.platform-table tbody tr {
+  background: var(--color-kumo-base);
+}
+.platform-table tbody tr:hover {
+  background: var(--color-kumo-elevated);
+}
+.platform-table [data-kumo-component="Button"] {
+  height: var(--compact-height);
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  gap: 4px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stack small,
+.text-link small {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-color-kumo-subtle);
+  font-weight: 400;
+}
+.text-link {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: var(--text-color-kumo-link);
+  padding: 0;
+  font-size: inherit;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+.text-link small {
+  display: block;
+  margin-top: 2px;
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-color-kumo-subtle);
+  line-height: 20px;
+}
+.status:before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.status.active,
+.status.succeeded,
+.status.sent,
+.status.credit,
+.status.on_sale {
+  color: var(--text-color-kumo-success);
+}
+.status.unknown,
+.status.pending,
+.status.invited,
+.status.reserve {
+  color: var(--text-color-kumo-warning);
+}
+.status.running,
+.status.queued {
+  color: var(--text-color-kumo-info);
+}
+.status.failed,
+.status.banned,
+.status.dead {
+  color: var(--text-color-kumo-danger);
+}
+.status.off_sale,
+.status.disabled {
+  color: var(--text-color-kumo-subtle);
+}
+.empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--text-color-kumo-subtle);
+  font-size: 13px;
+}
+.service-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-color-kumo-subtle);
+  font-size: 12px;
+  margin-top: 16px;
+}
+.service-line > span:last-child {
+  margin-left: auto;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-kumo-warning);
+  flex-shrink: 0;
+}
+.dot.ready {
+  background: var(--color-kumo-success);
+}
+.configuration-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  background: var(--color-kumo-base);
+  border: 1px solid var(--color-kumo-line);
+  border-radius: var(--control-radius);
+}
+.configuration-line p {
+  color: var(--text-color-kumo-subtle);
+  line-height: 21px;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+.configuration-line .row-actions {
+  flex-shrink: 0;
+}
+.filters,
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filters input,
+.table-toolbar input {
+  width: min(420px, 100%);
+}
+.filters [data-kumo-component="Select"] {
+  min-width: 136px;
+}
+textarea {
+  border: 1px solid var(--color-kumo-interact);
+  border-radius: var(--control-radius);
+  background: var(--color-kumo-control);
+  color: var(--text-color-kumo-default);
+  padding: 8px 12px;
+  min-height: var(--control-height);
+  font-size: 14px;
+  line-height: 21px;
+}
+textarea:focus {
+  outline: 2px solid var(--color-kumo-focus);
+  outline-offset: 1px;
+}
+textarea::placeholder {
+  color: var(--text-color-kumo-placeholder);
+}
+.pager,
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--text-color-kumo-subtle);
+  font-size: 13px;
+}
+.hint {
+  color: var(--text-color-kumo-subtle);
+  font-size: 12px;
+  margin-top: 16px;
+  line-height: 20px;
+}
+.platform-dialog {
+  top: 50%;
+  translate: -50% -50%;
+  width: min(512px, calc(100vw - 32px));
+  padding: 24px;
+  border-radius: 12px;
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  background: var(--color-kumo-base);
+}
+.platform-dialog.dialog-wide {
+  width: min(768px, calc(100vw - 32px));
+}
+.dialog-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.dialog-heading h2 {
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.dialog-description {
+  color: var(--text-color-kumo-subtle);
+  font-size: 14px;
+  line-height: 21px;
+  margin-top: 8px;
+}
+.dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+.dialog-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+.dialog-wide .dialog-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 16px;
+}
+.dialog-fields .field:has(textarea),
+.dialog-fields .field:has(input[type="url"]) {
+  grid-column: 1 / -1;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.field > span {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.field small {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--text-color-kumo-subtle);
+  font-weight: 400;
+}
+.field textarea {
+  resize: vertical;
+  width: 100%;
+}
+.field input {
+  width: 100%;
+}
+.field [data-kumo-component="Select"] {
+  width: 100%;
+}
+.dialog-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  border-top: 1px solid var(--color-kumo-line);
+  padding-top: 20px;
+  margin-top: 24px;
+}
+.detail {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.detail > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  font-size: 14px;
+}
+.detail dt {
+  color: var(--text-color-kumo-subtle);
+}
+.detail dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.error,
+.notice {
+  padding: 12px 16px;
+  border: 1px solid var(--color-kumo-line);
+  border-radius: var(--control-radius);
+  line-height: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.error {
+  background: var(--color-kumo-danger-tint);
+  color: var(--text-color-kumo-danger);
+  margin: 16px 0;
+}
+.notice {
+  background: var(--color-kumo-info-tint);
+  color: var(--text-color-kumo-info);
+  margin-bottom: 16px;
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 64px 16px;
+  color: var(--text-color-kumo-subtle);
+}
+.login-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 32px;
+  background: var(--color-kumo-canvas);
+}
+.login-brand {
+  align-self: flex-start;
+}
+.login-form {
+  width: min(448px, 100%);
+  margin: auto 0;
+  padding: 32px;
+  background: var(--color-kumo-base);
+  border: 1px solid var(--color-kumo-line);
+  border-radius: 12px;
+}
+.login-form h1 {
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: -0.3px;
+}
+.login-form > p {
+  color: var(--text-color-kumo-subtle);
+  line-height: 21px;
+  margin: 8px 0 24px;
+}
+.login-form .field {
+  margin-bottom: 20px;
+}
+.login-form .error {
+  color: var(--text-color-kumo-danger);
+  margin: 16px 0;
+}
+.login-form button[type="submit"] {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+}
+.login-shell footer {
+  color: var(--text-color-kumo-subtle);
+  font-size: 12px;
+}
+.docs {
+  max-width: 960px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.docs h2,
+.docs h3 {
+  margin: 24px 0 12px;
+}
+.docs h2:first-child {
+  margin-top: 0;
+}
+.docs p {
+  color: var(--text-color-kumo-default);
+  margin-bottom: 16px;
+}
+.docs pre {
+  padding: 16px;
+  background: var(--color-kumo-base);
+  border: 1px solid var(--color-kumo-line);
+  border-radius: var(--control-radius);
+  overflow: auto;
+  font-size: 13px;
+  line-height: 21px;
+}
+.content {
+  animation: enter 120ms ease-out;
+}
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.mobile-logout {
+  display: none !important;
+}
+@media (max-width: 1100px) {
+  :root {
+    --workspace-sidebar-width: 232px;
+  }
+  main,
+  .workspace-topbar {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .summary-strip > div {
+    padding: 0 16px;
+  }
+  .summary-strip strong {
+    font-size: 24px;
+  }
+}
+@media (max-width: 760px) {
+  .workspace {
+    display: block;
+  }
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-kumo-line);
+  }
+  .brand {
+    padding: 0 16px;
+    border-bottom: 0;
+  }
+  .sidebar-collapsed .brand {
+    justify-content: flex-start;
+    padding: 0 16px;
+  }
+  .sidebar-collapsed .brand-name,
+  .sidebar-collapsed .nav-text {
+    display: block;
+  }
+  .sidebar-toggle-row {
+    display: none;
+  }
+  .nav-label,
+  .sidebar-bottom {
+    display: none;
+  }
+  .sidebar nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 12px 12px;
+    gap: 4px;
+  }
+  .sidebar-collapsed .sidebar nav {
+    padding: 0 12px 12px;
+  }
+  .sidebar-collapsed .sidebar nav button {
+    justify-content: flex-start;
+    padding: 7px 10px;
+  }
+  .sidebar nav button {
+    white-space: nowrap;
+    min-height: var(--control-height);
+    padding: 7px 10px;
+  }
+  .sidebar nav button svg {
+    display: none;
+  }
+  .workspace-topbar {
+    height: 44px;
+    padding: 0 16px;
+  }
+  .workspace-origin {
+    font-size: 13px;
+  }
+  .workspace-account {
+    display: none;
+  }
+  main {
+    padding: 24px 16px;
+  }
+  main > header {
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .header-actions {
+    padding-top: 0;
+  }
+  h1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .summary-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 0;
+    padding: 20px 0;
+  }
+  .summary-strip > div:nth-child(3) {
+    border-left: 0;
+  }
+  .summary-strip strong {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .service-line {
+    flex-wrap: wrap;
+  }
+  .service-line > span:last-child {
+    margin-left: 0;
+    width: 100%;
+  }
+  .configuration-line {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+  .filters input,
+  .table-toolbar input {
+    width: 100%;
+  }
+  .table-toolbar {
+    width: 100%;
+  }
+  .pagination,
+  .pager {
+    justify-content: space-between;
+  }
+  .login-shell {
+    padding: 20px 16px;
+  }
+  .login-form {
+    padding: 24px;
+    margin: 48px 0;
+  }
+  .login-shell footer {
+    margin-top: auto;
+  }
+  .platform-dialog {
+    padding: 20px;
+    max-height: calc(100dvh - 32px);
+  }
+  .dialog-wide .dialog-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .dialog-heading h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  .detail > div {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .mobile-logout {
+    display: inline-flex !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

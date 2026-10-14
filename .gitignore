@@ -18,10 +18,11 @@ __pycache__/
 .env
 .env.*
 !.env.example
+!.env.*.example
 !.dev.vars.example
 *.local
 
-# Local design experiments and backups; retain the current baseline preview.
+# Local design experiments and backups.
 artifacts/*
 
 # Private keys and credential exports
@@ -56,3 +57,14 @@ artifacts/*
 *.tar.gz
 .open-source-release/
 coverage/
+
+# Database sidecars and credential containers
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db-wal
+*.db-shm
+*.p7b
+*.jks
+*.keystore
+*.bak

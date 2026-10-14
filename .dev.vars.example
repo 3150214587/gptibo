@@ -13,8 +13,8 @@ FEISHU_APP_SECRET= # Configure locally; never commit a real value.
 # Receiving user (ou_...) or chat (oc_...) for payout notifications.
 FEISHU_PAYOUT_RECIPIENT= # Configure locally; never commit a real value.
 
-# Nonfinancial purchase flow testing; disable before real fulfillment.
-ORDER_TESTING_ENABLED="true"
+# Nonfinancial purchase flow testing; opt in only in an isolated local environment.
+ORDER_TESTING_ENABLED="false"
 
 # Payment adapter. This switch alone cannot turn test orders into real payments.
 PAYMENT_PROVIDER="alipay"
@@ -52,3 +52,11 @@ ACCOUNT_SUPPLIER_CHECKOUT_ENABLED="false"
 DELIVERY_SUPPLIER_API_KEY= # Configure locally; never commit a real value.
 DELIVERY_SUPPLIER_CHECKOUT_ENABLED=false
 DELIVERY_SUPPLIER_CNY_PER_USD= # Configure locally; never commit a real value.
+
+# Optional self-hosted supply platform. Fill only your own server-side credentials.
+XGIFT_BACKEND=platform
+XGIFT_CHECKOUT_ENABLED=false
+XGIFT_MAX_SUPPLY_MINOR={}
+XGIFT_PLATFORM_API_BASE=
+XGIFT_PLATFORM_KEY_ID=
+XGIFT_PLATFORM_CLIENT_SECRET=

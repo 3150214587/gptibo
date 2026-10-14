@@ -1,0 +1,5 @@
+/data/
+/backups/
+*.exe
+/platform
+/coverage.out

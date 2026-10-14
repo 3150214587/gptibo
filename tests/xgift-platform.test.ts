@@ -9,7 +9,7 @@ type Context = Parameters<Parameters<typeof test>[1]>[0]
 
 async function fixture(t: Context) {
   const s = await customerFixture(); t.after(() => s.db.close())
-  Object.assign(s.env, { ORDER_TESTING_ENABLED: 'false', XGIFT_CHECKOUT_ENABLED: 'true', XGIFT_BACKEND: 'platform',
+  Object.assign(s.env, { ORDER_TESTING_ENABLED: 'false', XGIFT_CHECKOUT_ENABLED: 'true', XGIFT_BACKEND: 'platform', XGIFT_MAX_SUPPLY_MINOR: JSON.stringify({'x-premium-3m':1700,'x-premium-6m':3400}),
     XGIFT_PLATFORM_API_BASE: 'https://platform.example.test/v1', XGIFT_PLATFORM_KEY_ID: 'key_platform', XGIFT_PLATFORM_CLIENT_SECRET: 'test-platform-secret',
     XGIFT_API_BASE: 'https://legacy.example.test/v1', XGIFT_USER_ID: 'usr_fixture', XGIFT_KEY_ID: 'key_legacy', XGIFT_CLIENT_SECRET: 'test-legacy-secret' })
   s.db.exec("UPDATE catalog_plans SET price_cents=CASE id WHEN 'x-premium-3m' THEN 3500 ELSE 5500 END WHERE product_id='x-premium'")
@@ -36,7 +36,7 @@ async function fixture(t: Context) {
       assert.equal(url.pathname,'/v1/orders'); state.creates++; accepted=JSON.parse(raw)
       if (platform) {
         assert.equal(headers.get('X-Partner-Id'),null)
-        assert.equal(accepted.confirmed_recipient_id,'12345'); assert.equal(accepted.expected_supply_minor,accepted.product_code === 'x-3m' ? 1700 : 3400)
+        assert.equal(accepted.confirmed_recipient_id,'12345'); assert.equal(accepted.expected_supply_minor,accepted.product_code === 'x-3m' ? state.price : 3400)
         assert.equal(accepted.recipient_id,undefined); assert.equal(accepted.expected_points,undefined)
       }
       assert.equal(headers.get('Idempotency-Key'),'gptibo:'+accepted.merchant_order_no)
@@ -174,4 +174,19 @@ test('admin recovery checks the expected version and preserves partner settlemen
   const current=await getOrder(s.env,o.id)
   assert.equal(current.cost_cents,2100)
   assert.equal(s.db.prepare('SELECT COUNT(*) n FROM xgift_recovery_attempts').get()!.n,1)
+})
+
+test('custom supply quote is frozen below an explicit cap and lower cap rejects payment creation', async t => {
+  const s = await fixture(t)
+  s.state.price = 137
+  s.env.XGIFT_MAX_SUPPLY_MINOR = JSON.stringify({'x-premium-3m': 200})
+  const draft = await s.draft()
+  s.env.XGIFT_MAX_SUPPLY_MINOR = JSON.stringify({'x-premium-3m': 100})
+  assert.equal((await s.request('/api/orders', draft, s.buyer)).status, 409)
+  s.env.XGIFT_MAX_SUPPLY_MINOR = JSON.stringify({'x-premium-3m': 200})
+  const order = await s.create()
+  assert.equal(s.db.prepare('SELECT points FROM xgift_purchases WHERE order_id=?').get(order.id)!.points, 137)
+  s.state.succeeded = true
+  await s.pay(order.id)
+  assert.equal(s.db.prepare('SELECT status,cost_cents FROM orders WHERE id=?').get(order.id)!.cost_cents, 137)
 })
